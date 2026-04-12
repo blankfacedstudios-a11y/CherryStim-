@@ -1,13 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
-import StreamViewer from "@/components/stream/StreamViewer";
 import { useStreamMode } from "@/hooks/useStreamMode";
 import { useWebXR } from "@/hooks/useWebXR";
 import { Button } from "@/components/ui/button";
-import GiftThrower from "@/components/stream/GiftThrower";
 import { HapticsPanel } from "@/components/stream/HapticsPanel";
+import StreamViewerLoader from "@/components/stream/StreamViewerLoader";
+
+const GiftThrower = dynamic(() => import("@/components/stream/GiftThrower"), {
+  ssr: false
+});
 
 export default function StreamPage() {
   const params = useParams<{ dancerId: string }>();
@@ -17,7 +21,7 @@ export default function StreamPage() {
 
   return (
     <div className="relative min-h-screen bg-black">
-      <StreamViewer
+      <StreamViewerLoader
         dancerId={dancerId}
         streamUrl="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
         isLive
