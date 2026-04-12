@@ -42,6 +42,10 @@ describe("DancerDashboard", () => {
     expect(screen.getByText("SAG Pipeline")).toBeInTheDocument();
     expect(screen.getByText("Dream Wish Campaign")).toBeInTheDocument();
     expect(screen.getByText("My Profile")).toBeInTheDocument();
+    expect(screen.getByText("AR Filters")).toBeInTheDocument();
+    expect(screen.getByText("Equipment Partners")).toBeInTheDocument();
+    expect(screen.getByText("CherryStim Card")).toBeInTheDocument();
+    expect(screen.getByText("Welcome Package")).toBeInTheDocument();
     expect(screen.getByText("School of Economics")).toBeInTheDocument();
   });
 

@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TierBadge } from "@/components/profile/TierBadge";
 import { RatingBadge } from "@/components/profile/RatingBadge";
-import { Trophy, DollarSign, Users, BookOpen, Zap, Sparkles, Star, User, ClipboardList, Package, Wand2 } from "lucide-react";
+import { Trophy, DollarSign, Users, BookOpen, Zap, Sparkles, Star, User, ClipboardList, Package, Wand2, CreditCard, Gift } from "lucide-react";
 import { computeDancerTier } from "@/lib/tiers";
 import { getTierSplit } from "@/lib/splits";
 
@@ -157,6 +157,26 @@ export default function DancerDashboard() {
             <Package className="mb-4 text-emerald-400" size={32} />
             <h3 className="mb-2 text-2xl">Equipment Partners</h3>
             <p className="text-white/70">VR/3D cameras, haptics, bulk orders</p>
+          </Card>
+
+          <Card
+            className="glass cursor-pointer p-8 transition hover:border-gold-500"
+            onClick={() => router.push("/dancer/card-program")}
+            role="button"
+          >
+            <CreditCard className="mb-4 text-gold-500" size={32} />
+            <h3 className="mb-2 text-2xl">CherryStim Card</h3>
+            <p className="text-white/70">Metal debit card, credit building, cashback</p>
+          </Card>
+
+          <Card
+            className="glass cursor-pointer p-8 transition hover:border-gold-500"
+            onClick={() => router.push("/dancer/welcome-package")}
+            role="button"
+          >
+            <Gift className="mb-4 text-cherry-500" size={32} />
+            <h3 className="mb-2 text-2xl">Welcome Package</h3>
+            <p className="text-white/70">Pole, heels, perfume, signage, and more</p>
           </Card>
 
           <Card className="glass p-8 transition hover:border-gold-500">
