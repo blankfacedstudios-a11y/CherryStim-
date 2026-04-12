@@ -68,7 +68,7 @@ export default function DancerDashboard() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           <Card
             className="glass cursor-pointer p-8 transition hover:border-gold-500"
-            onClick={() => router.push("/stream-setup")}
+            onClick={() => router.push("/dancer/stream-setup")}
             role="button"
           >
             <Zap className="mb-4 text-gold-500" size={32} />
@@ -78,7 +78,7 @@ export default function DancerDashboard() {
 
           <Card
             className="glass cursor-pointer p-8 transition hover:border-gold-500"
-            onClick={() => router.push("/dream-wish")}
+            onClick={() => router.push("/dancer/dream-wish")}
             role="button"
           >
             <h3 className="mb-2 text-2xl">Dream Wish Campaign</h3>

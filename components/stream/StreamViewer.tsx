@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useMemo } from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Controllers, Hands, XR, createXRStore } from "@react-three/xr";
+import { Controllers, Hands, XR } from "@react-three/xr";
 import { Environment, OrbitControls } from "@react-three/drei";
 import VolumetricAvatar from "./VolumetricAvatar";
 import GiftThrower from "./GiftThrower";
@@ -18,7 +18,6 @@ export default function StreamViewer({
   isLive: boolean;
 }) {
   const { mode } = useStreamMode();
-  const xrStore = useMemo(() => createXRStore(), []);
 
   if (mode === "2D") {
     return (
@@ -36,7 +35,7 @@ export default function StreamViewer({
         <ambientLight intensity={0.55} />
         <spotLight position={[3, 5, 2]} intensity={4} color="#ffd700" angle={0.42} penumbra={0.4} castShadow />
         <Suspense fallback={null}>
-          <XR store={xrStore}>
+          <XR>
             <Controllers />
             <Hands />
             <Environment preset="night" />
