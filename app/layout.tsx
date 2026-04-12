@@ -3,6 +3,7 @@ import { Cinzel, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { QueryClientProviderRoot } from "@/components/providers/QueryClientProviderRoot";
+import { NavHeader } from "@/components/core/NavHeader";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -23,7 +24,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${cinzel.variable} ${playfair.variable}`}>
       <body className="bg-dark-950 text-white antialiased">
-        <QueryClientProviderRoot>{children}</QueryClientProviderRoot>
+        <QueryClientProviderRoot>
+          <NavHeader />
+          {children}
+        </QueryClientProviderRoot>
         <Toaster richColors position="top-right" />
       </body>
     </html>

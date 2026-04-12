@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" fill="none">
+  <defs>
+    <linearGradient id="cherry-stem" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a9e2f"/>
+      <stop offset="100%" stop-color="#3d7a1c"/>
+    </linearGradient>
+    <radialGradient id="cherry-left" cx="40%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#ff4466"/>
+      <stop offset="45%" stop-color="#e2002b"/>
+      <stop offset="100%" stop-color="#8b0018"/>
+    </radialGradient>
+    <radialGradient id="cherry-right" cx="40%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#ff3355"/>
+      <stop offset="50%" stop-color="#d40025"/>
+      <stop offset="100%" stop-color="#7a0015"/>
+    </radialGradient>
+    <radialGradient id="cherry-shine-l" cx="35%" cy="28%" r="25%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.85)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+    <radialGradient id="cherry-shine-r" cx="35%" cy="28%" r="25%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+    <linearGradient id="text-gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5c2a0e"/>
+      <stop offset="50%" stop-color="#3d1a06"/>
+      <stop offset="100%" stop-color="#5c2a0e"/>
+    </linearGradient>
+    <filter id="text-shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="rgba(92,42,14,0.15)"/>
+    </filter>
+    <filter id="cherry-shadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2.5" flood-color="rgba(120,0,20,0.35)"/>
+    </filter>
+  </defs>
+
+  <!-- Left cherry -->
+  <g filter="url(#cherry-shadow)">
+    <!-- Stem -->
+    <path d="M155 48 C140 28, 120 18, 112 8 C118 22, 125 38, 128 60 C130 72, 130 82, 128 90" stroke="url(#cherry-stem)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <!-- Cherry body -->
+    <ellipse cx="122" cy="108" rx="30" ry="29" fill="url(#cherry-left)"/>
+    <!-- Highlight -->
+    <ellipse cx="112" cy="97" rx="10" ry="8" fill="url(#cherry-shine-l)"/>
+    <!-- Small sparkle -->
+    <circle cx="108" cy="93" r="2.5" fill="rgba(255,255,255,0.9)"/>
+  </g>
+
+  <!-- Script text "Cherrystim" -->
+  <g filter="url(#text-shadow)">
+    <text x="400" y="155" text-anchor="middle" font-family="'Brush Script MT', 'Segoe Script', 'Apple Chancery', 'Comic Sans MS', cursive" font-size="110" font-weight="400" fill="url(#text-gradient)" letter-spacing="2">
+      Cherrystim
+    </text>
+  </g>
+
+  <!-- Right cherry -->
+  <g filter="url(#cherry-shadow)">
+    <!-- Stem -->
+    <path d="M660 165 C672 148, 688 138, 698 135 C690 142, 680 155, 675 168 C673 175, 672 180, 673 186" stroke="url(#cherry-stem)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Cherry body -->
+    <ellipse cx="680" cy="200" rx="26" ry="25" fill="url(#cherry-right)"/>
+    <!-- Highlight -->
+    <ellipse cx="672" cy="191" rx="8" ry="7" fill="url(#cherry-shine-r)"/>
+    <!-- Small sparkle -->
+    <circle cx="669" cy="188" r="2" fill="rgba(255,255,255,0.85)"/>
+  </g>
+</svg>
