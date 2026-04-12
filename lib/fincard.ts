@@ -169,6 +169,21 @@ export const CARD_ISSUING_PARTNERS: CardIssuingPartner[] = [
       "Full brand customization"
     ],
     recommended: false
+  },
+  {
+    name: "LivUp — The Dubai Dream",
+    region: "UAE / Dubai",
+    type: "Business Formation & Banking Setup (Prerequisite)",
+    website: "https://wa.link/0wi9de",
+    capabilities: [
+      "Remote Dubai business entity formation (DMCC, DIFC, mainland LLC)",
+      "UAE corporate bank account setup",
+      "Trade license and visa processing",
+      "WhatsApp concierge: +971 54 505 9320",
+      "Required BEFORE engaging NymCard/SimpliFi for card issuing",
+      "Step 0 for Dubai card program expansion"
+    ],
+    recommended: true
   }
 ];
 
@@ -274,9 +289,16 @@ export const LAUNCH_ROADMAP: { step: number; title: string; description: string;
   },
   {
     step: 10,
-    title: "Dubai / International Expansion",
-    description: "Launch NymCard-powered program in UAE/GCC for international dancers. Multi-currency support, local compliance, Arabic + English in-app experience.",
-    timeline: "8-12 weeks after US launch",
-    dependencies: ["US program stable", "NymCard integration complete"]
+    title: "Dubai Business Formation via LivUp",
+    description: "Contact LivUp — The Dubai Dream (WhatsApp +971 54 505 9320) to establish a Dubai business entity (DMCC free zone or DIFC recommended for fintech). Obtain trade license, open UAE corporate bank account, and complete visa processing. This is the legal prerequisite before engaging NymCard/SimpliFi for card issuing in the UAE/GCC market.",
+    timeline: "4-8 weeks",
+    dependencies: ["US program stable", "Decision on Dubai free zone type"]
+  },
+  {
+    step: 11,
+    title: "Dubai Card Program Launch",
+    description: "With Dubai entity established via LivUp, engage NymCard for BIN sponsorship and card issuing. Launch multi-currency CherryStim cards for UAE/GCC/international dancers. Arabic + English in-app experience. SimpliFi as backup provider.",
+    timeline: "8-12 weeks after Step 10",
+    dependencies: ["Step 10 complete (Dubai entity active)", "NymCard integration complete"]
   }
 ];

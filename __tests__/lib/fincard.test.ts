@@ -36,8 +36,8 @@ describe("CARD_PROGRAMS", () => {
 });
 
 describe("LAUNCH_ROADMAP", () => {
-  it("has 10 steps", () => {
-    expect(LAUNCH_ROADMAP).toHaveLength(10);
+  it("has 11 steps", () => {
+    expect(LAUNCH_ROADMAP).toHaveLength(11);
   });
 
   it("steps are in order", () => {
@@ -55,8 +55,12 @@ describe("LAUNCH_ROADMAP", () => {
 });
 
 describe("CARD_ISSUING_PARTNERS", () => {
-  it("has at least 4 partners", () => {
-    expect(CARD_ISSUING_PARTNERS.length).toBeGreaterThanOrEqual(4);
+  it("has at least 6 partners", () => {
+    expect(CARD_ISSUING_PARTNERS.length).toBeGreaterThanOrEqual(6);
+  });
+
+  it("includes LivUp for Dubai business formation", () => {
+    expect(CARD_ISSUING_PARTNERS.some((p) => p.name.includes("LivUp"))).toBe(true);
   });
 
   it("includes US and UAE partners", () => {
