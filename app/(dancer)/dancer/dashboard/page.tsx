@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TierBadge } from "@/components/profile/TierBadge";
 import { RatingBadge } from "@/components/profile/RatingBadge";
-import { Trophy, DollarSign, Users, BookOpen, Zap, Sparkles, Star, User, ClipboardList, Package } from "lucide-react";
+import { Trophy, DollarSign, Users, BookOpen, Zap, Sparkles, Star, User, ClipboardList, Package, Wand2 } from "lucide-react";
 import { computeDancerTier } from "@/lib/tiers";
 import { getTierSplit } from "@/lib/splits";
 
@@ -137,6 +137,16 @@ export default function DancerDashboard() {
             <User className="mb-4 text-cherry-500" size={32} />
             <h3 className="mb-2 text-2xl">My Profile</h3>
             <p className="text-white/70">Upload photos, manage tier, and view ratings</p>
+          </Card>
+
+          <Card
+            className="glass cursor-pointer p-8 transition hover:border-gold-500"
+            onClick={() => router.push("/dancer/filters")}
+            role="button"
+          >
+            <Wand2 className="mb-4 text-purple-400" size={32} />
+            <h3 className="mb-2 text-2xl">AR Filters</h3>
+            <p className="text-white/70">Face tracking, body filters, lip sync FX</p>
           </Card>
 
           <Card
