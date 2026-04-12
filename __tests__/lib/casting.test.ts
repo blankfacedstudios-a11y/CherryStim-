@@ -55,8 +55,8 @@ describe("AGENCY_RESEARCH_MARKETS", () => {
 });
 
 describe("CASTING_SPLIT", () => {
-  it("is 70/30", () => {
-    expect(CASTING_SPLIT.performer).toBe(70);
-    expect(CASTING_SPLIT.platform).toBe(30);
+  it("is 64/36", () => {
+    expect(CASTING_SPLIT.performer).toBe(64);
+    expect(CASTING_SPLIT.platform).toBe(36);
   });
 });

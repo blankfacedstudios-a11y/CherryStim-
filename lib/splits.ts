@@ -30,4 +30,4 @@ export function getTierSplit(tier: DancerTier): SplitConfig {
   return TIER_SPLITS[tier];
 }
 
-export const CASTING_SPLIT: SplitConfig = { performer: 70, platform: 30, label: "70/30" };
+export const CASTING_SPLIT: SplitConfig = { performer: 64, platform: 36, label: "64/36" };

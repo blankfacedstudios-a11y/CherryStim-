@@ -62,8 +62,8 @@ describe("StarBrightLightsPage", () => {
     expect(screen.queryByText(/HBO Series/)).not.toBeInTheDocument();
   });
 
-  it("renders the 70/30 split information", () => {
+  it("renders the 64/36 split information", () => {
     render(<StarBrightLightsPage />);
-    expect(screen.getByText(/70\/30/)).toBeInTheDocument();
+    expect(screen.getByText(/64\/36/)).toBeInTheDocument();
   });
 });

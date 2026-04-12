@@ -63,9 +63,9 @@ describe("getTierSplit", () => {
 });
 
 describe("CASTING_SPLIT", () => {
-  it("is 70/30", () => {
-    expect(CASTING_SPLIT.performer).toBe(70);
-    expect(CASTING_SPLIT.platform).toBe(30);
-    expect(CASTING_SPLIT.label).toBe("70/30");
+  it("is 64/36", () => {
+    expect(CASTING_SPLIT.performer).toBe(64);
+    expect(CASTING_SPLIT.platform).toBe(36);
+    expect(CASTING_SPLIT.label).toBe("64/36");
   });
 });
