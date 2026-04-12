@@ -4,7 +4,7 @@
 
 ### Project overview
 
-CherryStim is a Next.js 15 (App Router) premium live-streaming platform. All application code lives on the `cursor/cherrystim-immersive-platform-bf9b` branch (the `main` branch contains only a README).
+CherryStim is a Next.js 15 (App Router) premium immersive live-streaming platform with 3D/VR capabilities via `@react-three/fiber` and `@react-three/xr`.
 
 ### Key commands
 
