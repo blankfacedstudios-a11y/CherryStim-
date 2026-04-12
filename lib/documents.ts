@@ -98,38 +98,75 @@ export function generatePayStub(name: string, role: string, grossAmount: number,
 
 function calculateWithholding(gross: number, jurisdiction: string) {
   const deductions: { description: string; amount: number }[] = [];
-  let federal = 0;
-  let state = 0;
-  let social = 0;
-  let medicare = 0;
 
   if (jurisdiction.startsWith("US")) {
-    federal = gross * 0.22;
-    state = jurisdiction === "US-CA" ? gross * 0.093 : jurisdiction === "US-NY" ? gross * 0.0685 : jurisdiction === "US-TX" ? 0 : gross * 0.05;
-    social = gross * 0.062;
-    medicare = gross * 0.0145;
+    const federal = gross * 0.22;
+    const stateRates: Record<string, number> = { "US-CA": 0.093, "US-NY": 0.0685, "US-TX": 0, "US-FL": 0 };
+    const state = gross * (stateRates[jurisdiction] ?? 0.05);
     deductions.push({ description: "Federal Income Tax", amount: federal });
     if (state > 0) deductions.push({ description: `State Tax (${jurisdiction.split("-")[1]})`, amount: state });
-    deductions.push({ description: "Social Security (6.2%)", amount: social });
-    deductions.push({ description: "Medicare (1.45%)", amount: medicare });
-  } else if (jurisdiction === "EU") {
-    deductions.push({ description: "Income Tax (EU avg ~35%)", amount: gross * 0.35 });
+    deductions.push({ description: "Social Security (6.2%)", amount: gross * 0.062 });
+    deductions.push({ description: "Medicare (1.45%)", amount: gross * 0.0145 });
+  } else if (jurisdiction === "PR") {
+    deductions.push({ description: "PR Income Tax", amount: gross * 0.20 });
+    deductions.push({ description: "SS + Medicare", amount: gross * 0.0765 });
+  } else if (jurisdiction === "CA") {
+    deductions.push({ description: "Federal Tax (Canada)", amount: gross * 0.205 });
+    deductions.push({ description: "CPP + EI", amount: gross * 0.119 });
+  } else if (["EU", "DE", "FR", "IT", "ES", "NL", "PT", "IE"].includes(jurisdiction)) {
+    deductions.push({ description: "Income Tax (Europe)", amount: gross * 0.30 });
     deductions.push({ description: "Social Contributions", amount: gross * 0.12 });
   } else if (jurisdiction === "UK") {
     deductions.push({ description: "PAYE Income Tax", amount: gross * 0.2 });
     deductions.push({ description: "National Insurance", amount: gross * 0.12 });
+  } else if (jurisdiction === "CH") {
+    deductions.push({ description: "Federal + Cantonal Tax", amount: gross * 0.115 });
+    deductions.push({ description: "AHV/IV/EO", amount: gross * 0.128 });
   } else if (jurisdiction === "JP") {
     deductions.push({ description: "Income Tax (Japan)", amount: gross * 0.23 });
     deductions.push({ description: "Social Insurance", amount: gross * 0.15 });
-  } else if (jurisdiction === "AU") {
-    deductions.push({ description: "Income Tax (Australia)", amount: gross * 0.325 });
-    deductions.push({ description: "Medicare Levy (2%)", amount: gross * 0.02 });
   } else if (jurisdiction === "CN") {
     deductions.push({ description: "IIT (China)", amount: gross * 0.25 });
-    deductions.push({ description: "Social Insurance", amount: gross * 0.105 });
-  } else if (jurisdiction.startsWith("AF")) {
-    deductions.push({ description: "Income Tax (Africa region)", amount: gross * 0.20 });
+    deductions.push({ description: "Social Insurance (5+1)", amount: gross * 0.105 });
+  } else if (jurisdiction === "KR") {
+    deductions.push({ description: "Income Tax (Korea)", amount: gross * 0.24 });
+    deductions.push({ description: "Social Insurance", amount: gross * 0.09 });
+  } else if (jurisdiction === "PH") {
+    deductions.push({ description: "Income Tax (Philippines)", amount: gross * 0.25 });
+    deductions.push({ description: "SSS/PhilHealth/HDMF", amount: gross * 0.12 });
+  } else if (["TH", "VN", "MY", "ID"].includes(jurisdiction)) {
+    deductions.push({ description: "Income Tax (SE Asia)", amount: gross * 0.20 });
+    deductions.push({ description: "Social Insurance", amount: gross * 0.08 });
+  } else if (jurisdiction === "SG") {
+    deductions.push({ description: "Income Tax (Singapore)", amount: gross * 0.15 });
+    deductions.push({ description: "CPF", amount: gross * 0.20 });
+  } else if (jurisdiction === "IN") {
+    deductions.push({ description: "Income Tax (India)", amount: gross * 0.20 });
+    deductions.push({ description: "EPF + ESI", amount: gross * 0.12 });
+  } else if (jurisdiction === "AU") {
+    deductions.push({ description: "Income Tax (Australia)", amount: gross * 0.325 });
+    deductions.push({ description: "Medicare Levy", amount: gross * 0.02 });
+  } else if (jurisdiction === "NZ") {
+    deductions.push({ description: "Income Tax (NZ)", amount: gross * 0.30 });
+    deductions.push({ description: "ACC Levy", amount: gross * 0.04 });
+  } else if (["AE", "SA", "BS"].includes(jurisdiction)) {
+    deductions.push({ description: "No Income Tax", amount: 0 });
+    if (jurisdiction !== "BS") deductions.push({ description: "Social Insurance", amount: gross * 0.05 });
+  } else if (["DO", "CU", "BB", "JM", "TT", "HT"].includes(jurisdiction)) {
+    deductions.push({ description: "Income Tax (Caribbean)", amount: gross * 0.20 });
+    deductions.push({ description: "Social Security", amount: gross * 0.06 });
+  } else if (["BR", "CO", "AR", "MX"].includes(jurisdiction)) {
+    deductions.push({ description: "Income Tax (LATAM)", amount: gross * 0.25 });
+    deductions.push({ description: "Social Contributions", amount: gross * 0.10 });
+  } else if (jurisdiction.startsWith("AF") || ["EG", "ET", "MA"].includes(jurisdiction)) {
+    deductions.push({ description: "Income Tax (Africa)", amount: gross * 0.20 });
     deductions.push({ description: "Social Levy", amount: gross * 0.05 });
+  } else if (["FJ", "PG"].includes(jurisdiction)) {
+    deductions.push({ description: "Income Tax (Pacific)", amount: gross * 0.20 });
+    deductions.push({ description: "Social Fund", amount: gross * 0.07 });
+  } else if (jurisdiction === "IL") {
+    deductions.push({ description: "Income Tax (Israel)", amount: gross * 0.31 });
+    deductions.push({ description: "Bituach Leumi", amount: gross * 0.12 });
   } else {
     deductions.push({ description: "Estimated Tax", amount: gross * 0.25 });
   }
