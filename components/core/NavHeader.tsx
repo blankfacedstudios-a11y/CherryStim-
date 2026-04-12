@@ -63,6 +63,13 @@ export function NavHeader() {
                 <Users size={15} /> Browse
               </button>
 
+              <button
+                onClick={() => router.push("/cherry-competition")}
+                className={`flex items-center gap-1.5 text-sm ${pathname === "/cherry-competition" ? "text-cherry-500" : "text-white/60 hover:text-white"}`}
+              >
+                <Crown size={15} /> Rankings
+              </button>
+
               {(role === "client" || role === "admin") && (
                 <button
                   onClick={() => router.push("/dashboard")}
