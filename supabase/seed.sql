@@ -1,0 +1,3 @@
+-- Seed users are created via the seed script (scripts/seed-users.ts)
+-- This file is intentionally minimal; user creation requires the Auth Admin API.
+-- Run: npx tsx scripts/seed-users.ts
