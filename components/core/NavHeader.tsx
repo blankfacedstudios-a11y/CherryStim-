@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
-import { LogIn, LogOut, Home, Users, LayoutDashboard, Shield } from "lucide-react";
+import { LogIn, LogOut, Home, Users, LayoutDashboard, Shield, Crown, Scale, DollarSign } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
 
 export function NavHeader() {
@@ -82,12 +82,32 @@ export function NavHeader() {
               )}
 
               {role === "admin" && (
-                <button
-                  onClick={() => router.push("/admin")}
-                  className={`flex items-center gap-1.5 text-sm ${pathname === "/admin" ? "text-gold-500" : "text-white/60 hover:text-white"}`}
-                >
-                  <Shield size={15} /> Admin
-                </button>
+                <>
+                  <button
+                    onClick={() => router.push("/admin")}
+                    className={`flex items-center gap-1.5 text-sm ${pathname === "/admin" ? "text-gold-500" : "text-white/60 hover:text-white"}`}
+                  >
+                    <Shield size={15} /> Admin
+                  </button>
+                  <button
+                    onClick={() => router.push("/admin/executive")}
+                    className={`hidden items-center gap-1.5 text-sm md:flex ${pathname === "/admin/executive" ? "text-gold-500" : "text-white/60 hover:text-white"}`}
+                  >
+                    <Crown size={15} /> Executive
+                  </button>
+                  <button
+                    onClick={() => router.push("/admin/payroll")}
+                    className={`hidden items-center gap-1.5 text-sm md:flex ${pathname === "/admin/payroll" ? "text-gold-500" : "text-white/60 hover:text-white"}`}
+                  >
+                    <DollarSign size={15} /> Payroll
+                  </button>
+                  <button
+                    onClick={() => router.push("/admin/compliance")}
+                    className={`hidden items-center gap-1.5 text-sm md:flex ${pathname === "/admin/compliance" ? "text-gold-500" : "text-white/60 hover:text-white"}`}
+                  >
+                    <Scale size={15} /> Compliance
+                  </button>
+                </>
               )}
             </>
           )}

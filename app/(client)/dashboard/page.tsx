@@ -8,6 +8,7 @@ import { HoloWidget } from "@/components/dashboard/HoloWidget";
 import { Leaderboard } from "@/components/dashboard/Leaderboard";
 import { LiveCommentBox } from "@/components/dashboard/LiveCommentBox";
 import { TaxCalculator } from "@/components/dashboard/TaxCalculator";
+import { GlobalTaxModule } from "@/components/finance/GlobalTaxModule";
 import { CreditAcademy } from "@/components/dashboard/CreditAcademy";
 import { QuizModule } from "@/components/dashboard/QuizModule";
 import { MiniChart } from "@/components/dashboard/MiniChart";
@@ -123,13 +124,16 @@ export default function ClientDashboardPage() {
         )}
 
         {tab === "finance" && (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <TaxCalculator />
-            <div className="space-y-6">
-              <HoloWidget title="Total Invested" value="$4,280" subtitle="CherryCoins + NFTs" icon={<TrendingUp size={20} />} color="emerald" />
-              <HoloWidget title="Portfolio Value" value="$6,120" subtitle="+43% all-time" icon={<Sparkles size={20} />} color="gold" trend={{ value: 43, label: "all-time" }} />
-              <MiniChart title="Spending Trend" data={[280, 320, 290, 410, 380, 520, 450, 610, 480, 580, 520, 640]} labels={["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]} color="#ff0033" />
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <TaxCalculator />
+              <div className="space-y-6">
+                <HoloWidget title="Total Invested" value="$4,280" subtitle="CherryCoins + NFTs" icon={<TrendingUp size={20} />} color="emerald" />
+                <HoloWidget title="Portfolio Value" value="$6,120" subtitle="+43% all-time" icon={<Sparkles size={20} />} color="gold" trend={{ value: 43, label: "all-time" }} />
+                <MiniChart title="Spending Trend" data={[280, 320, 290, 410, 380, 520, 450, 610, 480, 580, 520, 640]} labels={["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]} color="#ff0033" />
+              </div>
             </div>
+            <GlobalTaxModule />
           </div>
         )}
       </div>

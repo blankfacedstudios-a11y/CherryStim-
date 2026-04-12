@@ -8,6 +8,7 @@ import { HoloWidget } from "@/components/dashboard/HoloWidget";
 import { Leaderboard } from "@/components/dashboard/Leaderboard";
 import { LiveCommentBox } from "@/components/dashboard/LiveCommentBox";
 import { TaxCalculator } from "@/components/dashboard/TaxCalculator";
+import { GlobalTaxModule } from "@/components/finance/GlobalTaxModule";
 import { CreditAcademy } from "@/components/dashboard/CreditAcademy";
 import { QuizModule } from "@/components/dashboard/QuizModule";
 import { MiniChart } from "@/components/dashboard/MiniChart";
@@ -122,22 +123,25 @@ export default function DancerDashboard() {
         )}
 
         {tab === "finance" && (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <TaxCalculator />
-            <div className="space-y-6">
-              <HoloWidget title="Net Earnings (After Split)" value="$26,900" subtitle="70% performer share" icon={<PiggyBank size={20} />} color="emerald" />
-              <HoloWidget title="Quarterly Tax Estimate" value="$8,240" subtitle="Due next quarter" icon={<DollarSign size={20} />} color="cherry" />
-              <MiniChart title="Monthly Earnings" data={[2800, 3200, 3600, 4100, 3800, 4500, 5200, 4800, 5600, 6200, 5800, 6400]} labels={["Jan", "Mar", "May", "Jul", "Sep", "Nov"]} color="#10b981" />
-              <Card className="glass p-5">
-                <Star className="mb-2 text-gold-500" size={20} />
-                <h3 className="font-semibold">Revenue Split Breakdown</h3>
-                <div className="mt-3 space-y-2 text-sm">
-                  <div className="flex justify-between"><span className="text-white/50">Your Share (70%)</span><span className="text-emerald-400">$26,900</span></div>
-                  <div className="flex justify-between"><span className="text-white/50">Platform Fee (30%)</span><span className="text-white/40">$11,529</span></div>
-                  <div className="flex justify-between border-t border-white/10 pt-2 font-semibold"><span>Gross Revenue</span><span>$38,429</span></div>
-                </div>
-              </Card>
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <TaxCalculator />
+              <div className="space-y-6">
+                <HoloWidget title="Net Earnings (After Split)" value="$26,900" subtitle="70% performer share" icon={<PiggyBank size={20} />} color="emerald" />
+                <HoloWidget title="Quarterly Tax Estimate" value="$8,240" subtitle="Due next quarter" icon={<DollarSign size={20} />} color="cherry" />
+                <MiniChart title="Monthly Earnings" data={[2800, 3200, 3600, 4100, 3800, 4500, 5200, 4800, 5600, 6200, 5800, 6400]} labels={["Jan", "Mar", "May", "Jul", "Sep", "Nov"]} color="#10b981" />
+                <Card className="glass p-5">
+                  <Star className="mb-2 text-gold-500" size={20} />
+                  <h3 className="font-semibold">Revenue Split Breakdown</h3>
+                  <div className="mt-3 space-y-2 text-sm">
+                    <div className="flex justify-between"><span className="text-white/50">Your Share (70%)</span><span className="text-emerald-400">$26,900</span></div>
+                    <div className="flex justify-between"><span className="text-white/50">Platform Fee (30%)</span><span className="text-white/40">$11,529</span></div>
+                    <div className="flex justify-between border-t border-white/10 pt-2 font-semibold"><span>Gross Revenue</span><span>$38,429</span></div>
+                  </div>
+                </Card>
+              </div>
             </div>
+            <GlobalTaxModule />
           </div>
         )}
       </div>
