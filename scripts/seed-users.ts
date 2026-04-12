@@ -52,6 +52,33 @@ const users: SeedUser[] = [
     role: "admin",
     tier: "Virtuoso",
     initialBalance: 100000
+  },
+  {
+    email: "floydbeararms@gmail.com",
+    password: "CherrySuperSonic3!",
+    displayName: "Floyd Beararms",
+    role: "admin",
+    tier: "Supersonic 3rd Edition",
+    bio: "Executive visionary. Full-stack access across all CherryStim portals.",
+    initialBalance: 75000
+  },
+  {
+    email: "prettyboi.floyd.45@gmail.com",
+    password: "CherrySuperSonic3!",
+    displayName: "PrettyBoi Floyd",
+    role: "admin",
+    tier: "Supersonic 3rd Edition",
+    bio: "Creative strategist with immersive entertainment expertise.",
+    initialBalance: 75000
+  },
+  {
+    email: "Santiabc55@gmail.com",
+    password: "CherrySuperSonic3!",
+    displayName: "Santi ABC",
+    role: "admin",
+    tier: "Supersonic 3rd Edition",
+    bio: "Growth operator. Full admin, client, and dancer portal access.",
+    initialBalance: 75000
   }
 ];
 
