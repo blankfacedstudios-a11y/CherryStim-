@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CherryStim Deployment Guide — www.cherrystim.com</title>
+<style>
+  @page { margin: 0.75in; size: letter; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; color: #1a1a1a; line-height: 1.7; max-width: 850px; margin: 0 auto; padding: 40px 30px; }
+  h1 { font-size: 28px; color: #cc0029; border-bottom: 3px solid #cc0029; padding-bottom: 12px; margin-bottom: 8px; }
+  .subtitle { color: #666; font-size: 14px; margin-bottom: 40px; }
+  h2 { font-size: 22px; color: #1a1a1a; margin-top: 50px; margin-bottom: 6px; padding: 10px 16px; background: linear-gradient(90deg, #cc0029, #ff3366); color: white; border-radius: 8px; page-break-after: avoid; }
+  h2 .step-num { background: white; color: #cc0029; padding: 2px 10px; border-radius: 5px; font-weight: 800; margin-right: 8px; }
+  h3 { font-size: 16px; color: #cc0029; margin-top: 24px; margin-bottom: 8px; }
+  p { margin-bottom: 12px; font-size: 14px; }
+  .action { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 14px; }
+  .action::before { content: '👉 '; }
+  .warning { background: #fefce8; border-left: 4px solid #eab308; padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 13px; }
+  .warning::before { content: '⚠️ '; }
+  .important { background: #fef2f2; border-left: 4px solid #cc0029; padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 13px; font-weight: 600; }
+  .important::before { content: '🔴 '; }
+  .save-this { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 13px; }
+  .save-this::before { content: '📋 SAVE THIS: '; font-weight: 700; }
+  code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'SF Mono', 'Fira Code', Consolas, monospace; }
+  pre { background: #1e1e2e; color: #cdd6f4; padding: 16px 20px; border-radius: 8px; font-size: 13px; overflow-x: auto; margin: 12px 0; font-family: 'SF Mono', 'Fira Code', Consolas, monospace; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  th { background: #f9fafb; padding: 10px 12px; text-align: left; border-bottom: 2px solid #e5e7eb; font-weight: 600; }
+  td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; }
+  tr:hover td { background: #fafafa; }
+  ol, ul { margin: 8px 0 16px 24px; font-size: 14px; }
+  li { margin-bottom: 8px; }
+  a { color: #cc0029; text-decoration: none; font-weight: 500; }
+  a:hover { text-decoration: underline; }
+  .link-box { display: inline-block; background: #cc0029; color: white !important; padding: 8px 20px; border-radius: 8px; text-decoration: none !important; font-weight: 600; margin: 8px 0; font-size: 14px; }
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li { padding: 6px 0; padding-left: 28px; position: relative; }
+  .checklist li::before { content: '☐'; position: absolute; left: 0; font-size: 16px; }
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 30px 0; }
+  .toc { background: #fafafa; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px 32px; margin: 24px 0; }
+  .toc h3 { color: #1a1a1a; margin-bottom: 12px; }
+  .toc ol { margin-left: 20px; }
+  .toc li { margin-bottom: 4px; font-size: 14px; }
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 2px solid #cc0029; color: #999; font-size: 11px; text-align: center; }
+  @media print {
+    body { padding: 0; }
+    .link-box { background: #cc0029 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h2 { background: linear-gradient(90deg, #cc0029, #ff3366) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .action, .warning, .important, .save-this { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🍒 CherryStim Deployment Guide</h1>
+<p class="subtitle">How to publish your CherryStim platform at <strong>www.cherrystim.com</strong> — every click, every step.<br>
+Last updated: April 2026 &nbsp;|&nbsp; Estimated time: 30–45 minutes</p>
+
+<div class="toc">
+<h3>Table of Contents</h3>
+<ol>
+<li><a href="#step1">Create a Vercel Account (Free Hosting)</a></li>
+<li><a href="#step2">Import Your GitHub Repository to Vercel</a></li>
+<li><a href="#step3">Create a Supabase Cloud Project (Database &amp; Auth)</a></li>
+<li><a href="#step4">Run the Database Migrations on Cloud Supabase</a></li>
+<li><a href="#step5">Create a LiveKit Cloud Project (Streaming)</a></li>
+<li><a href="#step6">Add Environment Variables to Vercel</a></li>
+<li><a href="#step7">Redeploy on Vercel with New Environment Variables</a></li>
+<li><a href="#step8">Seed Your User Accounts on the Cloud Database</a></li>
+<li><a href="#step9">Connect Your GoDaddy Domain to Vercel</a></li>
+<li><a href="#step10">Verify Everything Works</a></li>
+</ol>
+</div>
+
+<p class="important">Before you start, make sure you have: (1) A computer with internet, (2) Access to your <strong>blankfacedstudios-a11y</strong> GitHub account, (3) Access to your GoDaddy account for cherrystim.com, (4) A web browser (Chrome recommended).</p>
+
+<!-- ============================================================ -->
+<h2 id="step1"><span class="step-num">1</span> Create a Vercel Account</h2>
+
+<p>Vercel is the company that makes Next.js (which CherryStim is built on). They host your website for free.</p>
+
+<ol>
+<li>Open your web browser</li>
+<li>Go to: <a href="https://vercel.com/signup" class="link-box">vercel.com/signup</a></li>
+<li>You'll see options to sign up. Click <strong>"Continue with GitHub"</strong></li>
+<li>GitHub will ask you to authorize Vercel. Click <strong>"Authorize Vercel"</strong></li>
+<li>Vercel may ask you to choose between "Hobby" (free) and "Pro" ($20/mo). Select <strong>"Hobby"</strong> for now — you can upgrade later</li>
+<li>You're now on your Vercel dashboard. It will be empty. That's normal.</li>
+</ol>
+
+<div class="save-this">Your Vercel dashboard URL is <code>vercel.com/dashboard</code> — bookmark this page.</div>
+
+<!-- ============================================================ -->
+<h2 id="step2"><span class="step-num">2</span> Import Your GitHub Repository to Vercel</h2>
+
+<p>Now we connect your CherryStim code to Vercel so it can build and host it.</p>
+
+<ol>
+<li>On your Vercel dashboard, click the <strong>"Add New…"</strong> button (top right), then click <strong>"Project"</strong></li>
+<li>You'll see a list of your GitHub repositories. Look for <strong>"CherryStim-"</strong> (under blankfacedstudios-a11y)</li>
+<li>If you don't see it, click <strong>"Adjust GitHub App Permissions"</strong> and grant Vercel access to the CherryStim- repository</li>
+<li>Click <strong>"Import"</strong> next to the CherryStim- repository</li>
+<li>You'll see the "Configure Project" screen. <strong>Important settings:</strong>
+  <ul>
+  <li><strong>Project Name:</strong> Leave as <code>cherrystim</code> or type <code>cherrystim</code></li>
+  <li><strong>Framework Preset:</strong> Should auto-detect <code>Next.js</code> ✅</li>
+  <li><strong>Root Directory:</strong> Leave as <code>./</code> (the default)</li>
+  </ul>
+</li>
+<li>Look for a <strong>"Branch"</strong> dropdown or setting. Change it to: <code>cursor/cherrystim-immersive-platform-bf9b</code>
+  <div class="warning">This is critical! The <code>main</code> branch only has a README. All the actual code is on the <code>cursor/cherrystim-immersive-platform-bf9b</code> branch.</div>
+</li>
+<li>Click <strong>"Deploy"</strong></li>
+<li>Wait 2–3 minutes. You'll see a build log. When it says <strong>"Congratulations!"</strong> with confetti, your site is deployed!</li>
+<li>Vercel gives you a temporary URL like <code>cherrystim-xxxx.vercel.app</code>. Click it to verify the site loads.</li>
+</ol>
+
+<div class="warning">The site will load but login won't work yet — we need to set up the database (Supabase) first. That's Step 3.</div>
+
+<div class="save-this">Your Vercel project URL: <code>cherrystim-_______.vercel.app</code> (write it down)</div>
+
+<!-- ============================================================ -->
+<h2 id="step3"><span class="step-num">3</span> Create a Supabase Cloud Project</h2>
+
+<p>Supabase is your database and authentication system. It stores user accounts, profiles, wallets, and transactions.</p>
+
+<ol>
+<li>Open a new browser tab</li>
+<li>Go to: <a href="https://supabase.com" class="link-box">supabase.com</a></li>
+<li>Click <strong>"Start your project"</strong> (green button, top right)</li>
+<li>Sign in with <strong>"Continue with GitHub"</strong> (same GitHub account)</li>
+<li>You'll see your dashboard. Click <strong>"New Project"</strong></li>
+<li>Fill in the form:
+  <ul>
+  <li><strong>Organization:</strong> Click "Create a new organization" if needed, name it <code>CherryStim</code></li>
+  <li><strong>Project name:</strong> Type <code>cherrystim-production</code></li>
+  <li><strong>Database Password:</strong> Click "Generate a password" — <strong style="color:#cc0029">COPY AND SAVE THIS PASSWORD SOMEWHERE SAFE</strong>. You will need it later.</li>
+  <li><strong>Region:</strong> Select <code>West US (North California)</code> — closest to your California base</li>
+  <li><strong>Pricing Plan:</strong> Select <code>Free</code></li>
+  </ul>
+</li>
+<li>Click <strong>"Create new project"</strong></li>
+<li>Wait 2–3 minutes for the project to set up. You'll see a loading screen with "Setting up your project…"</li>
+<li>Once ready, you'll see your project dashboard</li>
+</ol>
+
+<h3>Now get your API credentials:</h3>
+
+<ol start="9">
+<li>In the left sidebar, click <strong>"Settings"</strong> (the gear icon at the bottom)</li>
+<li>Click <strong>"API"</strong> in the left submenu</li>
+<li>You'll see three important things:
+  <table>
+  <tr><th>What you see</th><th>What it's called</th><th>What to do</th></tr>
+  <tr><td>Project URL</td><td><code>NEXT_PUBLIC_SUPABASE_URL</code></td><td>Click the copy icon. Save it.</td></tr>
+  <tr><td>anon / public key</td><td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td><td>Click "Reveal". Copy and save it.</td></tr>
+  <tr><td>service_role / secret key</td><td><code>SUPABASE_SERVICE_ROLE_KEY</code></td><td>Click "Reveal". Copy and save it.</td></tr>
+  </table>
+</li>
+</ol>
+
+<div class="save-this">
+<strong>Supabase Project URL:</strong> <code>https://____________.supabase.co</code><br>
+<strong>Supabase Anon Key:</strong> <code>eyJ______________________</code><br>
+<strong>Supabase Service Role Key:</strong> <code>eyJ______________________</code>
+</div>
+
+<div class="important">The service_role key is SECRET. Never put it in your frontend code or share it publicly. It's only for the seed script (Step 8).</div>
+
+<!-- ============================================================ -->
+<h2 id="step4"><span class="step-num">4</span> Run Database Migrations</h2>
+
+<p>We need to create the database tables (profiles, wallets, transactions, etc.) in your cloud Supabase.</p>
+
+<ol>
+<li>In your Supabase project dashboard, click <strong>"SQL Editor"</strong> in the left sidebar (it looks like a terminal icon)</li>
+<li>Click <strong>"New Query"</strong> (top left button)</li>
+<li>Copy the ENTIRE contents below and paste it into the SQL editor:</li>
+</ol>
+
+<pre>create extension if not exists "uuid-ossp";
+
+create table profiles (
+  id uuid primary key references auth.users,
+  display_name text,
+  role text check (role in ('client', 'dancer', 'admin')),
+  tier text default 'Pro',
+  created_at timestamp default now()
+);
+
+create table coin_wallets (
+  user_id uuid primary key references profiles(id),
+  balance bigint default 0
+);
+
+create table dancer_profiles (
+  user_id uuid primary key references profiles(id),
+  bio text,
+  gear_owner text default 'cherrystim'
+);
+
+create table transactions (
+  id uuid primary key default uuid_generate_v4(),
+  from_user uuid references profiles(id),
+  to_user uuid references profiles(id),
+  amount bigint,
+  type text,
+  created_at timestamp default now()
+);</pre>
+
+<ol start="4">
+<li>Click the green <strong>"Run"</strong> button (or press Ctrl+Enter / Cmd+Enter)</li>
+<li>You should see <strong>"Success. No rows returned"</strong> — that means it worked!</li>
+</ol>
+
+<div class="action">That's it! Your database tables are created. The "admin" role was included in the profiles check constraint already.</div>
+
+<!-- ============================================================ -->
+<h2 id="step5"><span class="step-num">5</span> Create a LiveKit Cloud Project</h2>
+
+<p>LiveKit powers the real-time video streaming for the platform.</p>
+
+<ol>
+<li>Open a new browser tab</li>
+<li>Go to: <a href="https://cloud.livekit.io" class="link-box">cloud.livekit.io</a></li>
+<li>Click <strong>"Sign Up"</strong> and create an account (you can use GitHub or email)</li>
+<li>Once logged in, click <strong>"Create Project"</strong> (or "New Project")</li>
+<li>Fill in:
+  <ul>
+  <li><strong>Name:</strong> <code>cherrystim</code></li>
+  <li><strong>Region:</strong> Select closest to you (e.g., <code>US West</code>)</li>
+  </ul>
+</li>
+<li>Click <strong>"Create"</strong></li>
+<li>Once created, go to <strong>"Settings"</strong> → <strong>"Keys"</strong></li>
+<li>You'll see:
+  <table>
+  <tr><th>What you see</th><th>What it's called</th></tr>
+  <tr><td>API Key</td><td><code>LIVEKIT_API_KEY</code></td></tr>
+  <tr><td>API Secret</td><td><code>LIVEKIT_API_SECRET</code></td></tr>
+  <tr><td>WebSocket URL</td><td><code>NEXT_PUBLIC_LIVEKIT_URL</code></td></tr>
+  </table>
+</li>
+<li>Copy each one and save them</li>
+</ol>
+
+<div class="save-this">
+<strong>LiveKit API Key:</strong> <code>API______________</code><br>
+<strong>LiveKit API Secret:</strong> <code>__________________</code><br>
+<strong>LiveKit WebSocket URL:</strong> <code>wss://cherrystim-______.livekit.cloud</code>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="step6"><span class="step-num">6</span> Add Environment Variables to Vercel</h2>
+
+<p>Now we tell your Vercel deployment how to connect to Supabase and LiveKit.</p>
+
+<ol>
+<li>Go back to your Vercel dashboard: <a href="https://vercel.com/dashboard">vercel.com/dashboard</a></li>
+<li>Click on your <strong>"cherrystim"</strong> project</li>
+<li>Click <strong>"Settings"</strong> (tab at the top)</li>
+<li>In the left sidebar, click <strong>"Environment Variables"</strong></li>
+<li>You'll see a form with "Key" and "Value" fields. Add each variable one at a time:</li>
+</ol>
+
+<table>
+<tr><th>#</th><th>Key (type this exactly)</th><th>Value (paste from your saved notes)</th></tr>
+<tr><td>1</td><td><code>NEXT_PUBLIC_SUPABASE_URL</code></td><td>Your Supabase Project URL (from Step 3)</td></tr>
+<tr><td>2</td><td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td><td>Your Supabase anon key (from Step 3)</td></tr>
+<tr><td>3</td><td><code>LIVEKIT_API_KEY</code></td><td>Your LiveKit API Key (from Step 5)</td></tr>
+<tr><td>4</td><td><code>LIVEKIT_API_SECRET</code></td><td>Your LiveKit API Secret (from Step 5)</td></tr>
+<tr><td>5</td><td><code>NEXT_PUBLIC_LIVEKIT_URL</code></td><td>Your LiveKit WebSocket URL (from Step 5)</td></tr>
+<tr><td>6</td><td><code>NEXT_PUBLIC_SOLANA_RPC_URL</code></td><td><code>https://api.devnet.solana.com</code></td></tr>
+</table>
+
+<p>For each variable:</p>
+<ol start="6">
+<li>Type the <strong>Key</strong> in the "Key" field</li>
+<li>Paste the <strong>Value</strong> in the "Value" field</li>
+<li>Make sure <strong>all three environments</strong> are checked: Production ✅, Preview ✅, Development ✅</li>
+<li>Click <strong>"Save"</strong></li>
+<li>Repeat for all 6 variables</li>
+</ol>
+
+<div class="warning">Double-check there are no extra spaces before or after the values when pasting. Extra spaces will break things.</div>
+
+<!-- ============================================================ -->
+<h2 id="step7"><span class="step-num">7</span> Redeploy on Vercel</h2>
+
+<p>Environment variables only take effect after a new deployment. Let's trigger one.</p>
+
+<ol>
+<li>In your Vercel project, click the <strong>"Deployments"</strong> tab (top of the page)</li>
+<li>Find the most recent deployment (it's at the top of the list)</li>
+<li>Click the <strong>three dots (⋯)</strong> on the right side of that deployment</li>
+<li>Click <strong>"Redeploy"</strong></li>
+<li>A popup will appear. Click <strong>"Redeploy"</strong> again to confirm</li>
+<li>Wait 2–3 minutes for the build to complete</li>
+<li>Once it shows a green checkmark ✅, your site is live with the database connected!</li>
+</ol>
+
+<!-- ============================================================ -->
+<h2 id="step8"><span class="step-num">8</span> Seed Your User Accounts</h2>
+
+<p>Now we create all 7 user accounts (admins, client, dancer) in your cloud database. This requires running a command on your computer.</p>
+
+<h3>If you DON'T have Node.js installed:</h3>
+<ol>
+<li>Go to <a href="https://nodejs.org">nodejs.org</a> and download the <strong>"LTS"</strong> version</li>
+<li>Run the installer. Click Next through everything. Default settings are fine.</li>
+<li>Restart your terminal/command prompt after installation</li>
+</ol>
+
+<h3>Run the seed script:</h3>
+<ol>
+<li>Open your <strong>Terminal</strong> (Mac) or <strong>Command Prompt</strong> (Windows — search "cmd" in Start menu)</li>
+<li>Type these commands one at a time, pressing Enter after each:</li>
+</ol>
+
+<pre>git clone https://github.com/blankfacedstudios-a11y/CherryStim-.git
+
+cd CherryStim-
+
+git checkout cursor/cherrystim-immersive-platform-bf9b
+
+npm install</pre>
+
+<ol start="3">
+<li>Now set your cloud Supabase credentials. <strong>Replace the placeholder values</strong> with YOUR actual values from Step 3:</li>
+</ol>
+
+<p><strong>On Mac/Linux:</strong></p>
+<pre>export NEXT_PUBLIC_SUPABASE_URL="https://YOUR-PROJECT-ID.supabase.co"
+export SUPABASE_SERVICE_ROLE_KEY="eyJ...YOUR-SERVICE-ROLE-KEY..."</pre>
+
+<p><strong>On Windows (Command Prompt):</strong></p>
+<pre>set NEXT_PUBLIC_SUPABASE_URL=https://YOUR-PROJECT-ID.supabase.co
+set SUPABASE_SERVICE_ROLE_KEY=eyJ...YOUR-SERVICE-ROLE-KEY...</pre>
+
+<ol start="4">
+<li>Now run the seed script:</li>
+</ol>
+
+<pre>npx tsx scripts/seed-users.ts</pre>
+
+<ol start="5">
+<li>You should see output like:</li>
+</ol>
+
+<pre>🍒 Seeding CherryStim users...
+
+Creating user: timjackson2nd@gmail.com (admin)...
+  ✓ Tim Jackson (admin) seeded with 50,000 coins
+Creating user: thebrucewaynejunior@gmail.com (client)...
+  ✓ Bruce Wayne Jr (client) seeded with 10,000 coins
+...
+✅ Seed complete!</pre>
+
+<div class="important">If you see errors, double-check that your SUPABASE_SERVICE_ROLE_KEY is correct and that you ran the SQL migrations in Step 4.</div>
+
+<!-- ============================================================ -->
+<h2 id="step9"><span class="step-num">9</span> Connect GoDaddy Domain to Vercel</h2>
+
+<p>Now we point www.cherrystim.com to your Vercel deployment. This has two parts.</p>
+
+<h3>Part A: Tell Vercel about your domain</h3>
+
+<ol>
+<li>Go to your Vercel project: <a href="https://vercel.com/dashboard">vercel.com/dashboard</a> → click "cherrystim"</li>
+<li>Click <strong>"Settings"</strong> tab</li>
+<li>Click <strong>"Domains"</strong> in the left sidebar</li>
+<li>In the input field, type <code>cherrystim.com</code> and click <strong>"Add"</strong></li>
+<li>Vercel will ask how to configure it. Select <strong>"Add www.cherrystim.com and redirect cherrystim.com to it"</strong> (the recommended option)</li>
+<li>Click <strong>"Add"</strong></li>
+<li>You'll see both <code>cherrystim.com</code> and <code>www.cherrystim.com</code> listed, both showing ❌ "Invalid Configuration" — that's expected! We need to update GoDaddy next.</li>
+</ol>
+
+<h3>Part B: Update DNS records in GoDaddy</h3>
+
+<ol start="8">
+<li>Open a new tab and go to: <a href="https://dcc.godaddy.com" class="link-box">dcc.godaddy.com</a></li>
+<li>Log in to your GoDaddy account</li>
+<li>Find <strong>cherrystim.com</strong> in your domain list and click on it</li>
+<li>Click <strong>"DNS"</strong> or <strong>"Manage DNS"</strong> or <strong>"DNS Records"</strong></li>
+<li>You'll see a table of DNS records. We need to change/add two records:</li>
+</ol>
+
+<h3>Record 1: The A Record (for cherrystim.com without www)</h3>
+<ol start="13">
+<li>Find the row where <strong>Type</strong> is <code>A</code> and <strong>Name</strong> is <code>@</code></li>
+<li>Click the <strong>pencil/edit icon</strong> on that row</li>
+<li>Change the <strong>Value</strong> to: <code>76.76.21.21</code></li>
+<li>Set <strong>TTL</strong> to: <code>600</code> (or "10 minutes" or "1/2 Hour" — whatever is lowest)</li>
+<li>Click <strong>"Save"</strong></li>
+</ol>
+
+<div class="important">If there are MULTIPLE A records for <code>@</code>, delete the extras so only ONE remains with value <code>76.76.21.21</code>.</div>
+
+<h3>Record 2: The CNAME Record (for www.cherrystim.com)</h3>
+<ol start="18">
+<li>Look for a row where <strong>Type</strong> is <code>CNAME</code> and <strong>Name</strong> is <code>www</code></li>
+<li>If it exists: click the <strong>pencil/edit icon</strong> and change the <strong>Value</strong> to: <code>cname.vercel-dns.com</code></li>
+<li>If it does NOT exist: click <strong>"Add New Record"</strong> and fill in:
+  <ul>
+  <li><strong>Type:</strong> <code>CNAME</code></li>
+  <li><strong>Name:</strong> <code>www</code></li>
+  <li><strong>Value:</strong> <code>cname.vercel-dns.com</code></li>
+  <li><strong>TTL:</strong> <code>600</code></li>
+  </ul>
+</li>
+<li>Click <strong>"Save"</strong></li>
+</ol>
+
+<h3>Your final DNS records should look like this:</h3>
+<table>
+<tr><th>Type</th><th>Name</th><th>Value</th><th>TTL</th></tr>
+<tr><td><code>A</code></td><td><code>@</code></td><td><code>76.76.21.21</code></td><td>600</td></tr>
+<tr><td><code>CNAME</code></td><td><code>www</code></td><td><code>cname.vercel-dns.com</code></td><td>600</td></tr>
+</table>
+
+<div class="warning">Do NOT delete any MX records (those are for email). Only change the A and CNAME records as described above.</div>
+
+<!-- ============================================================ -->
+<h2 id="step10"><span class="step-num">10</span> Verify Everything Works</h2>
+
+<ol>
+<li><strong>Wait 5–30 minutes</strong> for DNS to propagate (sometimes up to a few hours, but usually fast)</li>
+<li>Go to <a href="https://dnschecker.org">dnschecker.org</a>, type <code>cherrystim.com</code>, and check that it resolves to <code>76.76.21.21</code> globally</li>
+<li>Go back to Vercel → Settings → Domains. The ❌ marks should now be ✅ green checkmarks. Vercel will also auto-generate your free SSL certificate (HTTPS).</li>
+<li>Open a new browser tab and visit: <a href="https://www.cherrystim.com"><strong>https://www.cherrystim.com</strong></a></li>
+<li>You should see the CherryStim landing page with the cherry logo and mode selection cards!</li>
+<li>Click the <strong>"Sign In"</strong> button (top right) to go to the login page</li>
+<li>Log in with: <code>blankfacedstudios@gmail.com</code> / <code>CherryAdmin2024!</code></li>
+<li>You should be redirected to the <strong>Admin Control Center</strong> with the user table showing all 7 users</li>
+</ol>
+
+<div class="action">🎉 Congratulations! CherryStim is LIVE at www.cherrystim.com!</div>
+
+<hr>
+
+<h3>All User Accounts</h3>
+<table>
+<tr><th>Email</th><th>Password</th><th>Role</th><th>Coins</th></tr>
+<tr><td>timjackson2nd@gmail.com</td><td>CherryAdmin2024!</td><td>Admin</td><td>50,000</td></tr>
+<tr><td>thebrucewaynejunior@gmail.com</td><td>CherryClient2024!</td><td>Client</td><td>10,000</td></tr>
+<tr><td>goldenchiold@gmail.com</td><td>CherryDancer2024!</td><td>Dancer</td><td>25,000</td></tr>
+<tr><td>blankfacedstudios@gmail.com</td><td>CherryAdmin2024!</td><td>Admin</td><td>100,000</td></tr>
+<tr><td>floydbeararms@gmail.com</td><td>CherrySuperSonic3!</td><td>Admin</td><td>75,000</td></tr>
+<tr><td>prettyboi.floyd.45@gmail.com</td><td>CherrySuperSonic3!</td><td>Admin</td><td>75,000</td></tr>
+<tr><td>Santiabc55@gmail.com</td><td>CherrySuperSonic3!</td><td>Admin</td><td>75,000</td></tr>
+</table>
+
+<hr>
+
+<h3>Quick Reference Links</h3>
+<table>
+<tr><th>Service</th><th>URL</th><th>Purpose</th></tr>
+<tr><td>Vercel Dashboard</td><td><a href="https://vercel.com/dashboard">vercel.com/dashboard</a></td><td>Hosting, deployments, env vars</td></tr>
+<tr><td>Supabase Dashboard</td><td><a href="https://supabase.com/dashboard">supabase.com/dashboard</a></td><td>Database, auth, SQL editor</td></tr>
+<tr><td>LiveKit Cloud</td><td><a href="https://cloud.livekit.io">cloud.livekit.io</a></td><td>Streaming API keys</td></tr>
+<tr><td>GoDaddy DNS</td><td><a href="https://dcc.godaddy.com">dcc.godaddy.com</a></td><td>Domain DNS records</td></tr>
+<tr><td>DNS Checker</td><td><a href="https://dnschecker.org">dnschecker.org</a></td><td>Verify DNS propagation</td></tr>
+</table>
+
+<hr>
+
+<h3>Troubleshooting Checklist</h3>
+<table>
+<tr><th>Problem</th><th>Solution</th></tr>
+<tr><td>Site shows 404 on Vercel</td><td>Make sure the branch is set to <code>cursor/cherrystim-immersive-platform-bf9b</code> in Vercel project settings → Git</td></tr>
+<tr><td>Login says "Invalid credentials"</td><td>Did you run the seed script (Step 8)? Check that SUPABASE_URL and ANON_KEY are correct in Vercel env vars</td></tr>
+<tr><td>Page loads but everything is blank/broken</td><td>Check Vercel env vars are saved correctly (no extra spaces). Then redeploy (Step 7)</td></tr>
+<tr><td>www.cherrystim.com doesn't load</td><td>DNS takes up to 48 hours (usually 5-30 min). Check dnschecker.org. Verify A and CNAME records in GoDaddy</td></tr>
+<tr><td>SSL certificate error / "Not Secure"</td><td>Vercel auto-provisions SSL. Go to Vercel → Settings → Domains and click "Refresh". Wait 10 min.</td></tr>
+<tr><td>Seed script fails with auth error</td><td>Make sure you're using the SERVICE_ROLE key (not the anon key) and that the SQL migrations ran successfully</td></tr>
+</table>
+
+<div class="footer">
+<p>🍒 CherryStim Inc. — Premium Immersive Entertainment Platform</p>
+<p>This document is confidential. Generated April 2026.</p>
+<p><em>To save as PDF: Press Ctrl+P (or Cmd+P on Mac) → Select "Save as PDF" → Click Save</em></p>
+</div>
+
+</body>
+</html>
