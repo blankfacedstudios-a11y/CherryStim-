@@ -14,6 +14,7 @@ CherryStim is a Next.js 15 (App Router) premium live-streaming platform. All app
 | Dev server | `npm run dev` (default port 3000) |
 | Lint | `npm run lint` |
 | Build | `npm run build` |
+| Seed users | `npx tsx scripts/seed-users.ts` |
 
 ### Environment variables
 
