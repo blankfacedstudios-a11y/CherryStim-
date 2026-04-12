@@ -9,8 +9,8 @@ export interface SplitConfig {
 }
 
 const BASE_SPLITS: Record<GearOwner, SplitConfig> = {
-  cherrystim: { performer: 70, platform: 30, label: "70/30" },
-  lease: { performer: 70, platform: 30, label: "70/30" },
+  cherrystim: { performer: 64, platform: 36, label: "64/36" },
+  lease: { performer: 64, platform: 36, label: "64/36" },
   dancer: { performer: 55, platform: 45, label: "55/45" }
 };
 

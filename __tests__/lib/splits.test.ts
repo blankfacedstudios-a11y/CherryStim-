@@ -3,18 +3,18 @@ import { getRevenueSplit, getTierSplit, CASTING_SPLIT, type GearOwner } from "@/
 import type { DancerTier } from "@/lib/tiers";
 
 describe("getRevenueSplit", () => {
-  it("returns 70/30 for cherrystim-provided gear", () => {
+  it("returns 64/36 for cherrystim-provided gear", () => {
     const split = getRevenueSplit("cherrystim");
-    expect(split.performer).toBe(70);
-    expect(split.platform).toBe(30);
-    expect(split.label).toBe("70/30");
+    expect(split.performer).toBe(64);
+    expect(split.platform).toBe(36);
+    expect(split.label).toBe("64/36");
   });
 
-  it("returns 70/30 for leased gear", () => {
+  it("returns 64/36 for leased gear", () => {
     const split = getRevenueSplit("lease");
-    expect(split.performer).toBe(70);
-    expect(split.platform).toBe(30);
-    expect(split.label).toBe("70/30");
+    expect(split.performer).toBe(64);
+    expect(split.platform).toBe(36);
+    expect(split.label).toBe("64/36");
   });
 
   it("returns 55/45 for dancer-owned gear", () => {
@@ -54,7 +54,7 @@ describe("getTierSplit", () => {
     expect(getTierSplit("virtuoso").performer).toBe(55);
   });
 
-  it("higher tiers give lower performer percentage (more platform share for prestige)", () => {
+  it("higher tiers give lower performer percentage", () => {
     const tiers: DancerTier[] = ["rising", "pro", "elite", "premier", "virtuoso"];
     for (let i = 1; i < tiers.length; i++) {
       expect(getTierSplit(tiers[i]).performer).toBeLessThanOrEqual(getTierSplit(tiers[i - 1]).performer);

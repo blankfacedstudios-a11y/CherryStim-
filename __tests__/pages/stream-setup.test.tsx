@@ -10,6 +10,11 @@ vi.mock("next/navigation", () => ({
   useParams: () => ({})
 }));
 
+vi.mock("sonner", () => ({
+  toast: { success: vi.fn() },
+  Toaster: () => null
+}));
+
 describe("StreamSetup", () => {
   beforeEach(() => {
     act(() => {
@@ -22,12 +27,19 @@ describe("StreamSetup", () => {
     expect(screen.getByText("Stream Setup")).toBeInTheDocument();
   });
 
-  it("renders all streaming mode buttons", () => {
+  it("renders streaming from options (mobile and home)", () => {
     render(<StreamSetup />);
-    expect(screen.getByText("2D")).toBeInTheDocument();
-    expect(screen.getByText("3D")).toBeInTheDocument();
-    expect(screen.getByText("VR")).toBeInTheDocument();
-    expect(screen.getByText("IMMERSIVE")).toBeInTheDocument();
+    expect(screen.getByText("Mobile")).toBeInTheDocument();
+    expect(screen.getByText("Home Setup")).toBeInTheDocument();
+  });
+
+  it("renders gear capabilities section", () => {
+    render(<StreamSetup />);
+    expect(screen.getByText("Gear Capabilities")).toBeInTheDocument();
+    expect(screen.getByText("2D Classic")).toBeInTheDocument();
+    expect(screen.getByText("3D Spatial")).toBeInTheDocument();
+    expect(screen.getByText("VR Ready")).toBeInTheDocument();
+    expect(screen.getByText("Full Immersive")).toBeInTheDocument();
   });
 
   it("renders revenue split section with correct gear options", () => {
@@ -37,16 +49,10 @@ describe("StreamSetup", () => {
     expect(screen.getByText("My Own Gear")).toBeInTheDocument();
   });
 
-  it("shows default revenue split (70/30 for cherrystim gear)", () => {
+  it("shows default revenue split (64/36 for cherrystim gear)", () => {
     render(<StreamSetup />);
-    expect(screen.getByText(/Performer keeps 70%/)).toBeInTheDocument();
-    expect(screen.getByText(/Platform keeps 30%/)).toBeInTheDocument();
-  });
-
-  it("updates stream mode when mode button is clicked", async () => {
-    render(<StreamSetup />);
-    await userEvent.click(screen.getByText("VR"));
-    expect(useStreamMode.getState().mode).toBe("VR");
+    expect(screen.getByText(/Performer keeps 64%/)).toBeInTheDocument();
+    expect(screen.getByText(/Platform keeps 36%/)).toBeInTheDocument();
   });
 
   it("renders haptics toggle", () => {
