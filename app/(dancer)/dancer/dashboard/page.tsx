@@ -3,10 +3,25 @@
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Trophy, DollarSign, Users, BookOpen, Zap } from "lucide-react";
+import { TierBadge } from "@/components/profile/TierBadge";
+import { RatingBadge } from "@/components/profile/RatingBadge";
+import { Trophy, DollarSign, Users, BookOpen, Zap, Sparkles, Star, User, ClipboardList } from "lucide-react";
+import { computeDancerTier } from "@/lib/tiers";
+import { getTierSplit } from "@/lib/splits";
+
+const MOCK_METRICS = {
+  hoursOnApp: 350,
+  earnings: 38429,
+  giftsReceived: 420,
+  campaignsCompleted: 4,
+  modulesPassed: 7,
+  rating: 92
+};
 
 export default function DancerDashboard() {
   const router = useRouter();
+  const tier = computeDancerTier(MOCK_METRICS);
+  const split = getTierSplit(tier);
 
   return (
     <div className="min-h-screen bg-[#050002] p-6 md:p-10">
@@ -14,9 +29,17 @@ export default function DancerDashboard() {
         <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
             <h1 className="cherry-text font-display text-5xl">Good Evening, Cherry</h1>
-            <p className="mt-2 text-white/70">
-              Virtuoso Tier • This week&apos;s earnings: <span className="text-emerald-400">$4,872</span>
-            </p>
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              <TierBadge tier={tier} type="dancer" />
+              <RatingBadge rating={MOCK_METRICS.rating} size="sm" />
+              <span className="text-sm text-white/70">
+                Split: <span className="text-emerald-400">{split.label}</span>
+              </span>
+              <span className="text-white/70">•</span>
+              <span className="text-white/70">
+                This week&apos;s earnings: <span className="text-emerald-400">$4,872</span>
+              </span>
+            </div>
           </div>
           <Button size="lg" className="px-10 text-lg">
             Go Live Now
@@ -65,7 +88,7 @@ export default function DancerDashboard() {
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card
             className="glass cursor-pointer p-8 transition hover:border-gold-500"
             onClick={() => router.push("/dancer/stream-setup")}
@@ -78,14 +101,46 @@ export default function DancerDashboard() {
 
           <Card
             className="glass cursor-pointer p-8 transition hover:border-gold-500"
+            onClick={() => router.push("/dancer/star-bright-lights")}
+            role="button"
+          >
+            <Sparkles className="mb-4 text-gold-500" size={32} />
+            <h3 className="mb-2 text-2xl">Star Bright Lights</h3>
+            <p className="text-white/70">SAG casting, modeling, and acting opportunities</p>
+          </Card>
+
+          <Card
+            className="glass cursor-pointer p-8 transition hover:border-gold-500"
+            onClick={() => router.push("/dancer/sag-pipeline")}
+            role="button"
+          >
+            <ClipboardList className="mb-4 text-gold-500" size={32} />
+            <h3 className="mb-2 text-2xl">SAG Pipeline</h3>
+            <p className="text-white/70">Your step-by-step path to SAG-AFTRA membership</p>
+          </Card>
+
+          <Card
+            className="glass cursor-pointer p-8 transition hover:border-gold-500"
             onClick={() => router.push("/dancer/dream-wish")}
             role="button"
           >
+            <Star className="mb-4 text-cherry-500" size={32} />
             <h3 className="mb-2 text-2xl">Dream Wish Campaign</h3>
             <p className="text-white/70">Launch a new goal and get advance funding</p>
           </Card>
 
+          <Card
+            className="glass cursor-pointer p-8 transition hover:border-gold-500"
+            onClick={() => router.push("/dancer/profile")}
+            role="button"
+          >
+            <User className="mb-4 text-cherry-500" size={32} />
+            <h3 className="mb-2 text-2xl">My Profile</h3>
+            <p className="text-white/70">Upload photos, manage tier, and view ratings</p>
+          </Card>
+
           <Card className="glass p-8 transition hover:border-gold-500">
+            <BookOpen className="mb-4 text-sky-400" size={32} />
             <h3 className="mb-2 text-2xl">School of Economics</h3>
             <p className="text-white/70">Financial literacy and business modules</p>
           </Card>

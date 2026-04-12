@@ -47,21 +47,25 @@ export default function StreamSetup() {
             </h2>
             <div className="flex flex-col gap-4 md:flex-row">
               {[
-                { value: "cherrystim", label: "Cherrystim Provided" },
-                { value: "lease", label: "Leased Gear" },
-                { value: "dancer", label: "My Own Gear" }
-              ].map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setGearOwner(option.value as GearOwner)}
-                  className={`flex-1 rounded-2xl p-6 text-left ${
-                    gearOwner === option.value ? "border-2 border-gold-400 bg-cherry-600/80" : "glass"
-                  }`}
-                >
-                  <div>{option.label}</div>
-                  <div className="mt-2 font-bold text-emerald-400">{split.label}</div>
-                </button>
-              ))}
+                { value: "cherrystim" as const, label: "Cherrystim Provided", desc: "Platform gear" },
+                { value: "lease" as const, label: "Leased Gear", desc: "Rented equipment" },
+                { value: "dancer" as const, label: "My Own Gear", desc: "Your equipment" }
+              ].map((option) => {
+                const optSplit = getRevenueSplit(option.value);
+                return (
+                  <button
+                    key={option.value}
+                    onClick={() => setGearOwner(option.value)}
+                    className={`flex-1 rounded-2xl p-6 text-left ${
+                      gearOwner === option.value ? "border-2 border-gold-400 bg-cherry-600/80" : "glass"
+                    }`}
+                  >
+                    <div className="font-medium">{option.label}</div>
+                    <div className="text-xs text-white/50">{option.desc}</div>
+                    <div className="mt-2 font-bold text-emerald-400">{optSplit.label}</div>
+                  </button>
+                );
+              })}
             </div>
             <p className="mt-4 text-sm text-white/65">
               Performer keeps {split.performer}% • Platform keeps {split.platform}%

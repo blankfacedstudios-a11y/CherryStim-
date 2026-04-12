@@ -35,10 +35,13 @@ describe("DancerDashboard", () => {
     expect(screen.getByText("87%")).toBeInTheDocument();
   });
 
-  it("renders navigation cards", () => {
+  it("renders navigation cards including new modules", () => {
     render(<DancerDashboard />);
     expect(screen.getByText("Start Streaming")).toBeInTheDocument();
+    expect(screen.getByText("Star Bright Lights")).toBeInTheDocument();
+    expect(screen.getByText("SAG Pipeline")).toBeInTheDocument();
     expect(screen.getByText("Dream Wish Campaign")).toBeInTheDocument();
+    expect(screen.getByText("My Profile")).toBeInTheDocument();
     expect(screen.getByText("School of Economics")).toBeInTheDocument();
   });
 
@@ -47,15 +50,27 @@ describe("DancerDashboard", () => {
     expect(screen.getByRole("button", { name: "Go Live Now" })).toBeInTheDocument();
   });
 
-  it("navigates to stream-setup when Start Streaming is clicked", async () => {
+  it("shows tier badge and rating", () => {
     render(<DancerDashboard />);
-    await userEvent.click(screen.getByText("Start Streaming"));
-    expect(mockPush).toHaveBeenCalledWith("/dancer/stream-setup");
+    expect(screen.getByText("Elite")).toBeInTheDocument();
+    expect(screen.getByText("92%")).toBeInTheDocument();
   });
 
-  it("navigates to dream-wish when Dream Wish Campaign is clicked", async () => {
+  it("navigates to star-bright-lights", async () => {
     render(<DancerDashboard />);
-    await userEvent.click(screen.getByText("Dream Wish Campaign"));
-    expect(mockPush).toHaveBeenCalledWith("/dancer/dream-wish");
+    await userEvent.click(screen.getByText("Star Bright Lights"));
+    expect(mockPush).toHaveBeenCalledWith("/dancer/star-bright-lights");
+  });
+
+  it("navigates to sag-pipeline", async () => {
+    render(<DancerDashboard />);
+    await userEvent.click(screen.getByText("SAG Pipeline"));
+    expect(mockPush).toHaveBeenCalledWith("/dancer/sag-pipeline");
+  });
+
+  it("navigates to profile", async () => {
+    render(<DancerDashboard />);
+    await userEvent.click(screen.getByText("My Profile"));
+    expect(mockPush).toHaveBeenCalledWith("/dancer/profile");
   });
 });

@@ -30,14 +30,14 @@ describe("StreamSetup", () => {
     expect(screen.getByText("IMMERSIVE")).toBeInTheDocument();
   });
 
-  it("renders revenue split section", () => {
+  it("renders revenue split section with correct gear options", () => {
     render(<StreamSetup />);
     expect(screen.getByText("Cherrystim Provided")).toBeInTheDocument();
     expect(screen.getByText("Leased Gear")).toBeInTheDocument();
     expect(screen.getByText("My Own Gear")).toBeInTheDocument();
   });
 
-  it("shows default revenue split (70/30)", () => {
+  it("shows default revenue split (70/30 for cherrystim gear)", () => {
     render(<StreamSetup />);
     expect(screen.getByText(/Performer keeps 70%/)).toBeInTheDocument();
     expect(screen.getByText(/Platform keeps 30%/)).toBeInTheDocument();
@@ -59,5 +59,12 @@ describe("StreamSetup", () => {
     render(<StreamSetup />);
     expect(screen.getByRole("button", { name: "Save & Go Live" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Preview Stream/ })).toBeInTheDocument();
+  });
+
+  it("shows 55/45 split when dancer owns gear", async () => {
+    render(<StreamSetup />);
+    await userEvent.click(screen.getByText("My Own Gear"));
+    expect(screen.getByText(/Performer keeps 55%/)).toBeInTheDocument();
+    expect(screen.getByText(/Platform keeps 45%/)).toBeInTheDocument();
   });
 });

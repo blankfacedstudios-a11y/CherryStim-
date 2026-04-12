@@ -6,15 +6,19 @@ import Image from "next/image";
 import { Search, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CoinBalance } from "@/components/core/CoinBalance";
+import { TierBadge } from "@/components/profile/TierBadge";
+import { RatingBadge } from "@/components/profile/RatingBadge";
 import { useStreamMode } from "@/hooks/useStreamMode";
+import type { DancerTier } from "@/lib/tiers";
 
 const sampleDancers = [
   {
     id: "1",
     name: "Luna Rose",
-    tier: "Virtuoso",
+    tier: "virtuoso" as DancerTier,
     location: "Miami",
     viewers: 1243,
+    rating: 96,
     image:
       "https://images.unsplash.com/photo-1505033575518-a36ea2ef75ae?auto=format&fit=crop&w=900&q=80",
     specialty: "Pole & Immersive"
@@ -22,9 +26,10 @@ const sampleDancers = [
   {
     id: "2",
     name: "Scarlet Noir",
-    tier: "Virtuoso",
+    tier: "virtuoso" as DancerTier,
     location: "Paris",
     viewers: 892,
+    rating: 94,
     image:
       "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80",
     specialty: "Sensual VR"
@@ -32,9 +37,10 @@ const sampleDancers = [
   {
     id: "3",
     name: "Diamond Jade",
-    tier: "Pro",
+    tier: "pro" as DancerTier,
     location: "Los Angeles",
     viewers: 674,
+    rating: 88,
     image:
       "https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?auto=format&fit=crop&w=900&q=80",
     specialty: "3D Stage Experience"
@@ -42,9 +48,10 @@ const sampleDancers = [
   {
     id: "4",
     name: "Velvet Siren",
-    tier: "Virtuoso",
+    tier: "premier" as DancerTier,
     location: "Dubai",
     viewers: 1456,
+    rating: 91,
     image:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80",
     specialty: "Haptic Signature Shows"
@@ -62,7 +69,7 @@ export default function BrowsePage() {
       sampleDancers.filter(
         (dancer) =>
           dancer.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-          (selectedTier === "All" || dancer.tier === selectedTier)
+          (selectedTier === "All" || dancer.tier === selectedTier.toLowerCase())
       ),
     [searchTerm, selectedTier]
   );
@@ -83,8 +90,8 @@ export default function BrowsePage() {
           </div>
           <CoinBalance />
           <div className="flex gap-3">
-            {["All", "Virtuoso", "Pro"].map((tier) => (
-              <Button key={tier} onClick={() => setSelectedTier(tier)} variant={selectedTier === tier ? "default" : "outline"}>
+            {["All", "Virtuoso", "Premier", "Elite", "Pro", "Rising"].map((tier) => (
+              <Button key={tier} onClick={() => setSelectedTier(tier)} variant={selectedTier === tier ? "default" : "outline"} size="sm">
                 {tier}
               </Button>
             ))}
@@ -113,7 +120,10 @@ export default function BrowsePage() {
                 </div>
               </div>
               <div className="flex items-center justify-between border-t border-white/10 px-6 py-3 text-xs text-white/70">
-                <span>{dancer.tier}</span>
+                <div className="flex items-center gap-2">
+                  <TierBadge tier={dancer.tier} type="dancer" size="sm" />
+                  <RatingBadge rating={dancer.rating} size="sm" />
+                </div>
                 <span className="flex items-center gap-1">
                   <Eye size={14} /> {dancer.viewers.toLocaleString()} live
                 </span>

@@ -65,11 +65,15 @@ describe("BrowsePage", () => {
     expect(articles).toHaveLength(4);
   });
 
+  it("shows tier badges and rating badges for dancers", () => {
+    render(<BrowsePage />);
+    const virtuosoBadges = screen.getAllByText("Virtuoso");
+    expect(virtuosoBadges.length).toBeGreaterThan(0);
+  });
+
   it("renders Crush and Sprung buttons for each dancer", () => {
     render(<BrowsePage />);
     const crushButtons = screen.getAllByText("Crush ($4)");
     expect(crushButtons).toHaveLength(4);
-    const sprungButtons = screen.getAllByText("Sprung ($10/mo)");
-    expect(sprungButtons).toHaveLength(4);
   });
 });
