@@ -60,6 +60,24 @@ export default function Home() {
             <Crown className="mr-3" /> Enter Cherrystim
           </Button>
         )}
+
+        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <button onClick={() => router.push("/cherry-competition")} className="glass rounded-3xl p-6 text-left transition hover:-translate-y-1 hover:border-cherry-500/50">
+            <div className="mb-3 text-2xl">🏆</div>
+            <h3 className="mb-1 text-lg font-semibold">Cherry Rankings</h3>
+            <p className="text-sm text-white/50">Watch top performers compete city-wide, country-wide, and worldwide.</p>
+          </button>
+          <button onClick={() => router.push("/sponsor")} className="glass rounded-3xl p-6 text-left transition hover:-translate-y-1 hover:border-gold-500/50">
+            <div className="mb-3 text-2xl">👑</div>
+            <h3 className="mb-1 text-lg font-semibold">The Cherry Ecosystem</h3>
+            <p className="text-sm text-white/50">Discover the engine behind the world&apos;s premier entertainment platform.</p>
+          </button>
+          <button onClick={() => router.push("/studios")} className="glass rounded-3xl p-6 text-left transition hover:-translate-y-1 hover:border-violet-500/50">
+            <div className="mb-3 text-2xl">🏢</div>
+            <h3 className="mb-1 text-lg font-semibold">CherryStim Studios</h3>
+            <p className="text-sm text-white/50">World-class broadcast facilities in 14 cities across 8 countries.</p>
+          </button>
+        </div>
       </div>
     </main>
   );
