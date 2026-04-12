@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TierBadge } from "@/components/profile/TierBadge";
 import { RatingBadge } from "@/components/profile/RatingBadge";
-import { Trophy, DollarSign, Users, BookOpen, Zap, Sparkles, Star, User, ClipboardList, Package, Wand2, CreditCard, Gift } from "lucide-react";
+import { Trophy, DollarSign, Users, BookOpen, Zap, Sparkles, Star, User, ClipboardList, Package, Wand2, CreditCard, Gift, Truck } from "lucide-react";
 import { computeDancerTier } from "@/lib/tiers";
 import { getTierSplit } from "@/lib/splits";
 
@@ -171,12 +171,22 @@ export default function DancerDashboard() {
 
           <Card
             className="glass cursor-pointer p-8 transition hover:border-gold-500"
-            onClick={() => router.push("/dancer/welcome-package")}
+            onClick={() => router.push("/dancer/onboarding")}
             role="button"
           >
             <Gift className="mb-4 text-cherry-500" size={32} />
-            <h3 className="mb-2 text-2xl">Welcome Package</h3>
-            <p className="text-white/70">Pole, heels, perfume, signage, and more</p>
+            <h3 className="mb-2 text-2xl">Welcome Setup</h3>
+            <p className="text-white/70">Select tier, card, sizes & order package</p>
+          </Card>
+
+          <Card
+            className="glass cursor-pointer p-8 transition hover:border-gold-500"
+            onClick={() => router.push("/dancer/order-tracking")}
+            role="button"
+          >
+            <Truck className="mb-4 text-sky-400" size={32} />
+            <h3 className="mb-2 text-2xl">Order Tracking</h3>
+            <p className="text-white/70">Live tracking from order to delivery</p>
           </Card>
 
           <Card className="glass p-8 transition hover:border-gold-500">

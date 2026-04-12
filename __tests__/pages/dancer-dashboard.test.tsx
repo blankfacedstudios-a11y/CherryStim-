@@ -45,7 +45,8 @@ describe("DancerDashboard", () => {
     expect(screen.getByText("AR Filters")).toBeInTheDocument();
     expect(screen.getByText("Equipment Partners")).toBeInTheDocument();
     expect(screen.getByText("CherryStim Card")).toBeInTheDocument();
-    expect(screen.getByText("Welcome Package")).toBeInTheDocument();
+    expect(screen.getByText("Welcome Setup")).toBeInTheDocument();
+    expect(screen.getByText("Order Tracking")).toBeInTheDocument();
     expect(screen.getByText("School of Economics")).toBeInTheDocument();
   });
 
