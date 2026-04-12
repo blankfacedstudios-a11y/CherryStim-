@@ -77,6 +77,13 @@ export function NavHeader() {
                 🎁 Rewards
               </button>
 
+              <button
+                onClick={() => router.push("/shop")}
+                className={`hidden items-center gap-1.5 text-sm md:flex ${pathname === "/shop" ? "text-cherry-500" : "text-white/60 hover:text-white"}`}
+              >
+                🛒 Shop
+              </button>
+
               {(role === "client" || role === "admin") && (
                 <button
                   onClick={() => router.push("/dashboard")}

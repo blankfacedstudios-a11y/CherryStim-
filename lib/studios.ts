@@ -46,6 +46,6 @@ export const COMPETITION_FUNDING = {
   coinPurchases: { rate: 0.10, label: "10% of all CherryCoin purchases", description: "Every coin bought on the platform contributes to the ecosystem" },
   appSplits: { rate: 0.05, label: "5% of platform app splits", description: "A portion of the platform's revenue share goes to competition prizes" },
   giftPurchases: { rate: 0.155, label: "15.5% of all gifts purchased", description: "Gift economy directly fuels performer competition rewards" },
-  dancerIncome: { rate: 0.055, label: "5.5% of dancer income", description: "Performers invest in the ecosystem that elevates their careers" },
+  dancerIncome: { rate: 0.02, label: "2% of dancer income", description: "A small contribution from performers that fuels the ecosystem elevating their careers" },
   sponsorships: { rate: null, label: "Client & brand sponsorships", description: "VIP clients and brands can sponsor tiers, events, and prizes" }
 };
