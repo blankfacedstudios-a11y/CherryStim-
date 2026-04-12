@@ -30,3 +30,4 @@ Copy `.env.example` to `.env.local` and fill in credentials. Required external s
 - The `@react-three/xr` package requires a browser with WebXR support for VR/Immersive modes; 2D and 3D modes work in any modern browser.
 - There is a Supabase migration at `supabase/migrations/001_schema.sql` that must be run against a Supabase instance to set up the database schema.
 - ESLint config extends `next/core-web-vitals` only (no custom rules).
+- **Known issue:** The `/stream/[dancerId]` page crashes in `next dev` with `Cannot read properties of undefined (reading 'ReactCurrentOwner')` because `@react-three/fiber` does not support SSR. The page builds fine in `next build` (static generation). To test this page in dev, the `StreamViewer` component (or its parent) needs a `dynamic(() => import(...), { ssr: false })` wrapper.
