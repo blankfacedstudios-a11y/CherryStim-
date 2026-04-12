@@ -33,10 +33,14 @@ describe("ClientDashboardPage", () => {
     expect(screen.getByText("$328")).toBeInTheDocument();
   });
 
-  it("renders action cards", () => {
+  it("renders action cards including new features", () => {
     render(<ClientDashboardPage />);
     expect(screen.getByText("Private Session Queue")).toBeInTheDocument();
     expect(screen.getByText("Tier Membership")).toBeInTheDocument();
+    expect(screen.getByText("Welcome Package")).toBeInTheDocument();
+    expect(screen.getByText("Order Tracking")).toBeInTheDocument();
+    expect(screen.getByText("AR Filters")).toBeInTheDocument();
+    expect(screen.getByText("My Profile")).toBeInTheDocument();
   });
 
   it("renders CTA buttons", () => {
