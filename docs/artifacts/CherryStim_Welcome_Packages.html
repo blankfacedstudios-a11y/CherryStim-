@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHERRYSTIM — Welcome Packages</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     CHERRYSTIM WELCOME PACKAGES — MAGAZINE DESIGN SYSTEM
+     ═══════════════════════════════════════════════════════════════ */
+
+  :root {
+    --bg-dark: #050002;
+    --cherry: #ff0033;
+    --cherry-deep: #cc0029;
+    --cherry-glow: #ff1a4a;
+    --gold: #ffd700;
+    --gold-light: #ffe44d;
+    --gold-dark: #b8960f;
+    --white: #f5f0eb;
+    --white-muted: #c9c0b8;
+    --gray: #2a2025;
+    --gray-light: #3d3338;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    background: var(--bg-dark);
+    color: var(--white);
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Page Container ─────────────────────────────────── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    background: var(--bg-dark);
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+  }
+
+  .page-inner {
+    padding: 48px 56px;
+    min-height: 297mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Typography ─────────────────────────────────────── */
+  .font-cinzel { font-family: 'Cinzel', serif; }
+  .font-playfair { font-family: 'Playfair Display', serif; }
+
+  h1, h2, h3, h4 { font-family: 'Cinzel', serif; letter-spacing: 0.08em; }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+
+  .section-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--white-muted);
+    margin-bottom: 36px;
+  }
+
+  /* ── Decorative Lines ───────────────────────────────── */
+  .gold-rule {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 16px 0 24px;
+  }
+
+  .gold-rule-center {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 16px auto 24px;
+  }
+
+  .cherry-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--cherry), transparent 70%);
+    margin: 24px 0;
+  }
+
+  /* ── Background Patterns ────────────────────────────── */
+  .bg-glow-cherry {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 0, 51, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bg-glow-gold {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .corner-accent {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.3;
+  }
+
+  .corner-tl { top: 24px; left: 24px; border-width: 2px 0 0 2px; }
+  .corner-tr { top: 24px; right: 24px; border-width: 2px 2px 0 0; }
+  .corner-bl { bottom: 24px; left: 24px; border-width: 0 0 2px 2px; }
+  .corner-br { bottom: 24px; right: 24px; border-width: 0 2px 2px 0; }
+
+  /* ── Product Icon Circles ───────────────────────────── */
+  .product-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+
+  .icon-cherry {
+    background: radial-gradient(circle at 30% 30%, var(--cherry-glow), var(--cherry-deep));
+    box-shadow: 0 4px 20px rgba(255, 0, 51, 0.3);
+  }
+
+  .icon-gold {
+    background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold-dark));
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.25);
+  }
+
+  .icon-dark {
+    background: radial-gradient(circle at 30% 30%, #3d3338, #1a1015);
+    box-shadow: 0 4px 20px rgba(255, 0, 51, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+
+  .icon-sm {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+
+  .icon-lg {
+    width: 96px;
+    height: 96px;
+    font-size: 44px;
+  }
+
+  .icon-xl {
+    width: 120px;
+    height: 120px;
+    font-size: 56px;
+  }
+
+  /* ── Product Cards ──────────────────────────────────── */
+  .product-card {
+    background: linear-gradient(135deg, rgba(42, 32, 37, 0.8), rgba(26, 16, 21, 0.9));
+    border: 1px solid rgba(255, 215, 0, 0.12);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: border-color 0.3s;
+  }
+
+  .product-card:hover {
+    border-color: rgba(255, 215, 0, 0.35);
+  }
+
+  .product-card .info h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .product-card .info p {
+    font-size: 12px;
+    color: var(--white-muted);
+    line-height: 1.5;
+  }
+
+  .product-card .price {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .card-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .card-full {
+    grid-column: 1 / -1;
+  }
+
+  /* ── Tier Badges ────────────────────────────────────── */
+  .tier-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+  }
+
+  .tier-rising {
+    background: linear-gradient(135deg, #4a1a2a, #2d0f1a);
+    color: var(--cherry);
+    border: 1px solid rgba(255, 0, 51, 0.4);
+  }
+
+  .tier-pro {
+    background: linear-gradient(135deg, #3d2a10, #2a1d08);
+    color: var(--gold);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+  }
+
+  .tier-elite {
+    background: linear-gradient(135deg, #1a0a2e, #0d0518);
+    color: #c77dff;
+    border: 1px solid rgba(199, 125, 255, 0.4);
+  }
+
+  .tier-premier {
+    background: linear-gradient(135deg, #0a2e2e, #051818);
+    color: #4dd4ac;
+    border: 1px solid rgba(77, 212, 172, 0.4);
+  }
+
+  .tier-virtuoso {
+    background: linear-gradient(135deg, #2e1a0a, #1a0f05);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  }
+
+  /* ── Partner Cards ──────────────────────────────────── */
+  .partner-card {
+    background: linear-gradient(135deg, rgba(42, 32, 37, 0.6), rgba(26, 16, 21, 0.8));
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .partner-card h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .partner-card .location {
+    font-size: 11px;
+    color: var(--white-muted);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .partner-card .desc {
+    font-size: 11px;
+    color: var(--white-muted);
+    line-height: 1.5;
+  }
+
+  /* ── Checklist / Timeline ───────────────────────────── */
+  .step-list {
+    list-style: none;
+    counter-reset: steps;
+    padding-left: 0;
+  }
+
+  .step-list li {
+    counter-increment: steps;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 14px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(42, 32, 37, 0.5), rgba(26, 16, 21, 0.6));
+    border-radius: 8px;
+    border-left: 3px solid var(--cherry);
+  }
+
+  .step-list li::before {
+    content: counter(steps, decimal-leading-zero);
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 36px;
+    line-height: 1.2;
+  }
+
+  .step-list li .step-text {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .step-list li .step-text strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* ── Pipeline ───────────────────────────────────────── */
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pipeline-stage {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    position: relative;
+    border-left: 2px solid var(--cherry);
+    margin-left: 20px;
+  }
+
+  .pipeline-stage::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cherry);
+    border: 2px solid var(--bg-dark);
+  }
+
+  .pipeline-stage .stage-num {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 24px;
+  }
+
+  .pipeline-stage .stage-label {
+    font-size: 13px;
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .pipeline-stage .stage-desc {
+    font-size: 11px;
+    color: var(--white-muted);
+    margin-left: auto;
+    text-align: right;
+    max-width: 200px;
+  }
+
+  /* ── Page Numbers ───────────────────────────────────── */
+  .page-number {
+    position: absolute;
+    bottom: 28px;
+    right: 56px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    opacity: 0.6;
+    letter-spacing: 0.15em;
+  }
+
+  .page-number-left {
+    right: auto;
+    left: 56px;
+  }
+
+  /* ── Cover Specific ─────────────────────────────────── */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 297mm;
+    position: relative;
+  }
+
+  .cover-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    opacity: 0.8;
+  }
+
+  .cover-title {
+    font-family: 'Cinzel', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .cover-cherry {
+    color: var(--cherry);
+  }
+
+  .cover-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 48px;
+  }
+
+  .cover-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--white-muted);
+    max-width: 380px;
+    line-height: 1.7;
+  }
+
+  .cover-line {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 32px auto;
+  }
+
+  .cover-year {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.4em;
+    opacity: 0.5;
+  }
+
+  /* ── Unboxing Visual ────────────────────────────────── */
+  .unbox-visual {
+    width: 260px;
+    height: 180px;
+    margin: 0 auto 32px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .unbox-box {
+    width: 180px;
+    height: 120px;
+    background: linear-gradient(145deg, #1a1418, #0a0608);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .unbox-box::before {
+    content: '🍒';
+    font-size: 36px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .unbox-seal {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 900;
+    color: var(--bg-dark);
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .tissue-accent {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    top: -10px;
+    background: linear-gradient(180deg, rgba(255, 0, 51, 0.1), transparent);
+    border-radius: 50% 50% 0 0;
+  }
+
+  /* ── Flex Helpers ────────────────────────────────────── */
+  .flex-row { display: flex; flex-direction: row; }
+  .flex-col { display: flex; flex-direction: column; }
+  .gap-8 { gap: 8px; }
+  .gap-12 { gap: 12px; }
+  .gap-16 { gap: 16px; }
+  .gap-24 { gap: 24px; }
+  .items-center { align-items: center; }
+  .justify-center { justify-content: center; }
+  .text-center { text-align: center; }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .mt-32 { margin-top: 32px; }
+  .mb-8 { margin-bottom: 8px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+
+  /* ── Gender Cards ───────────────────────────────────── */
+  .gender-section {
+    background: linear-gradient(135deg, rgba(42, 32, 37, 0.4), rgba(26, 16, 21, 0.6));
+    border: 1px solid rgba(255, 215, 0, 0.08);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .gender-section h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .gender-female h3 { color: #ff69b4; }
+  .gender-male h3 { color: #6fa8dc; }
+  .gender-all h3 { color: var(--gold); }
+
+  /* ── Compact List Card ──────────────────────────────── */
+  .item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.02);
+    margin-bottom: 6px;
+  }
+
+  .item-row .emoji {
+    font-size: 22px;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .item-row .label {
+    font-size: 12px;
+    color: var(--white);
+    flex: 1;
+  }
+
+  .item-row .val {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ── Back Cover ─────────────────────────────────────── */
+  .back-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 297mm;
+    text-align: center;
+  }
+
+  .back-cover .logo-mark {
+    font-size: 80px;
+    margin-bottom: 32px;
+  }
+
+  .back-cover .brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .back-cover .brand-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .back-cover .legal {
+    font-size: 10px;
+    color: var(--white-muted);
+    opacity: 0.4;
+    max-width: 320px;
+    line-height: 1.6;
+  }
+
+  /* ── Tier Estimate Bar ──────────────────────────────── */
+  .tier-estimate {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 8px;
+  }
+
+  .tier-estimate .est-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: var(--white-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .tier-estimate .est-value {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-left: auto;
+  }
+
+  /* ── Two-column layout ──────────────────────────────── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* ── Micro Items ────────────────────────────────────── */
+  .micro-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, rgba(42, 32, 37, 0.6), rgba(26, 16, 21, 0.7));
+    border: 1px solid rgba(255, 215, 0, 0.08);
+    border-radius: 8px;
+  }
+
+  .micro-card .micro-emoji {
+    font-size: 24px;
+    width: 28px;
+    text-align: center;
+  }
+
+  .micro-card .micro-info {
+    flex: 1;
+  }
+
+  .micro-card .micro-info .micro-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .micro-card .micro-info .micro-desc {
+    font-size: 10px;
+    color: var(--white-muted);
+  }
+
+  .micro-card .micro-price {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: var(--gold);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-cherry" style="top: -200px; left: -200px;"></div>
+  <div class="bg-glow-gold" style="bottom: -100px; right: -100px;"></div>
+  <div class="corner-accent corner-tl"></div>
+  <div class="corner-accent corner-tr"></div>
+  <div class="corner-accent corner-bl"></div>
+  <div class="corner-accent corner-br"></div>
+
+  <div class="cover">
+    <div class="cover-brand">Est. 2024 &nbsp;·&nbsp; Exclusive Access</div>
+
+    <div style="font-size: 72px; margin-bottom: 24px;">🍒</div>
+
+    <div class="cover-title">
+      <span class="cover-cherry">Cherry</span>Stim
+    </div>
+    <div class="cover-subtitle">Welcome Packages</div>
+
+    <div class="cover-line"></div>
+
+    <div class="cover-tagline">
+      A curated collection of premium welcome experiences for dancers and clients.
+      Every detail crafted to embody luxury, empowerment, and the art of allure.
+    </div>
+
+    <div class="cover-line"></div>
+
+    <div class="cover-year">MMXXIV &nbsp;·&nbsp; VISUAL CATALOG &nbsp;·&nbsp; CONFIDENTIAL</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 2 — THE UNBOXING EXPERIENCE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-cherry" style="top: 50%; left: -200px; transform: translateY(-50%);"></div>
+  <div class="corner-accent corner-tl"></div>
+  <div class="corner-accent corner-br"></div>
+
+  <div class="page-inner">
+    <div class="section-title">The Unboxing Experience</div>
+    <div class="section-subtitle">Where first impressions become lasting memories</div>
+    <div class="gold-rule"></div>
+
+    <div class="unbox-visual">
+      <div class="tissue-accent"></div>
+      <div class="unbox-box">
+        <div class="unbox-seal">CS</div>
+      </div>
+    </div>
+
+    <div style="max-width: 480px; margin: 0 auto;">
+      <div class="product-card mb-16" style="border-color: rgba(255, 215, 0, 0.25);">
+        <div class="product-icon icon-dark icon-lg">📦</div>
+        <div class="info">
+          <h4>Matte Black Magnetic Box</h4>
+          <p>Rigid two-piece construction with soft-touch lamination. Magnetic closure ensures a satisfying reveal. Embossed CherryStim logotype in gold foil on lid.</p>
+          <div class="price">Premium Packaging</div>
+        </div>
+      </div>
+
+      <div class="product-card mb-16" style="border-color: rgba(255, 0, 51, 0.25);">
+        <div class="product-icon icon-cherry icon-lg">🍒</div>
+        <div class="info">
+          <h4>Cherry Tissue Paper</h4>
+          <p>Custom-dyed tissue in deep cherry red, delicately crinkled and layered. Printed with subtle CherryStim watermark pattern. Adds dramatic color contrast against the matte black interior.</p>
+          <div class="price">Signature Touch</div>
+        </div>
+      </div>
+
+      <div class="product-card" style="border-color: rgba(255, 215, 0, 0.35);">
+        <div class="product-icon icon-gold icon-lg">🔱</div>
+        <div class="info">
+          <h4>Gold Wax Seal</h4>
+          <p>Hand-pressed metallic gold wax seal affixed to the tissue closure. Features the CherryStim crest — a cherry blossom intertwined with a crown. Signals exclusivity before the box is even fully opened.</p>
+          <div class="price">Artisan Crafted</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cherry-rule" style="margin-top: 32px;"></div>
+
+    <p style="text-align: center; font-size: 13px; color: var(--white-muted); font-style: italic; max-width: 420px; margin: 0 auto;">
+      "The unboxing is the first dance — a moment of anticipation, a whisper of what's to come."
+    </p>
+  </div>
+
+  <div class="page-number">02</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 3 — RISING TIER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-cherry" style="top: -100px; right: -200px;"></div>
+  <div class="corner-accent corner-tl"></div>
+  <div class="corner-accent corner-br"></div>
+
+  <div class="page-inner">
+    <div class="section-title">Dancer Packages</div>
+    <div class="section-subtitle">Curated tiers of empowerment</div>
+    <div class="gold-rule"></div>
+
+    <div class="tier-badge tier-rising">✦ Rising Tier — 4 Items</div>
+
+    <p style="font-size: 13px; color: var(--white-muted); margin-bottom: 24px; max-width: 500px;">
+      The foundation of every CherryStim journey. A carefully curated starter collection that
+      establishes your presence and connects you to the community.
+    </p>
+
+    <div class="card-grid">
+      <div class="product-card">
+        <div class="product-icon icon-dark">📦</div>
+        <div class="info">
+          <h4>Welcome Box</h4>
+          <p>Matte black magnetic box with cherry tissue paper and gold wax seal. Your CherryStim journey begins here.</p>
+          <div class="price">Included</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-gold">💳</div>
+        <div class="info">
+          <h4>Metal Debit Card</h4>
+          <p>Brushed metal card with CherryStim branding. Direct deposit enabled for instant payouts.</p>
+          <div class="price">Included</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-cherry">📖</div>
+        <div class="info">
+          <h4>Welcome Magazine</h4>
+          <p>48-page editorial guide covering platform features, community guidelines, and success stories.</p>
+          <div class="price">Included</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-dark">🧲</div>
+        <div class="info">
+          <h4>Fridge Magnets</h4>
+          <p>Set of 4 collectible magnets with CherryStim motifs. Cherry blossom, crown, logo, and motivational quote.</p>
+          <div class="price">Included</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-estimate">
+      <span class="est-label">Estimated Package Value</span>
+      <span class="est-value">Complimentary</span>
+    </div>
+
+    <div class="cherry-rule"></div>
+
+    <div class="tier-badge tier-pro" style="margin-top: 8px;">✦✦ Pro Tier — +8 Additional Items</div>
+
+    <p style="font-size: 13px; color: var(--white-muted); margin-bottom: 20px; max-width: 500px;">
+      Everything in Rising, plus professional-grade equipment and luxury essentials
+      that transform any space into a studio.
+    </p>
+
+    <div class="card-grid">
+      <div class="product-card">
+        <div class="product-icon icon-cherry">💃</div>
+        <div class="info">
+          <h4>Lupit LED Dance Pole</h4>
+          <p>Professional removable pole with LED lighting system. Static and spinning modes. Slovenian engineering.</p>
+          <div class="price">$450 – $650</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-dark">👠</div>
+        <div class="info">
+          <h4>Pleaser Platform Heels</h4>
+          <p>Industry-standard platform heels from Pleaser USA, Los Angeles. Multiple styles available.</p>
+          <div class="price">$89 – $120</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-cherry">✨</div>
+        <div class="info">
+          <h4>CherryStim Neon Sign</h4>
+          <p>Custom LED neon sign in cherry red. Dimmable with remote control. Perfect backdrop accent.</p>
+          <div class="price">$120 – $180</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-gold">💡</div>
+        <div class="info">
+          <h4>Ring Light</h4>
+          <p>18" professional ring light with adjustable color temperature and brightness. Phone mount included.</p>
+          <div class="price">$75 – $120</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-number page-number-left">03</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 4 — PRO TIER (continued) + ELITE TIER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-gold" style="top: -100px; left: -100px;"></div>
+  <div class="corner-accent corner-tr"></div>
+  <div class="corner-accent corner-bl"></div>
+
+  <div class="page-inner">
+    <div class="tier-badge tier-pro">✦✦ Pro Tier — Continued</div>
+
+    <div class="card-grid" style="margin-top: 16px;">
+      <div class="product-card">
+        <div class="product-icon icon-dark">📱</div>
+        <div class="info">
+          <h4>Streaming Tripod</h4>
+          <p>Adjustable tripod with phone/camera mount. Compact and portable with 360° rotation.</p>
+          <div class="price">$35 – $55</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-cherry">📖</div>
+        <div class="info">
+          <h4>Equipment Guide</h4>
+          <p>Comprehensive setup manual covering pole installation, lighting, camera angles, and streaming tips.</p>
+          <div class="price">Included</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-gold">📖</div>
+        <div class="info">
+          <h4>Star Bright Lights Mag</h4>
+          <p>Exclusive magazine featuring lighting techniques, studio design, and visual branding strategies.</p>
+          <div class="price">Included</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon icon-dark">🧴</div>
+        <div class="info">
+          <h4>Tanning Lotion</h4>
+          <p>Premium self-tanning formula. Gradual buildable color with cherry-scented moisturizing base.</p>
+          <div class="price">$55 – $75</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-estimate">
+      <span class="est-label">Pro Tier Total Est. Value</span>
+      <span class="est-value">$849 – $1,200+</span>
+    </div>
+
+    <div class="cherry-rule"></div>
+
+    <div class="tier-badge tier-elite" style="margin-top: 8px;">✦✦✦ Elite Tier — +3 Luxury Items</div>
+
+    <p style="font-size: 13px; color: var(--white-muted); margin-bottom: 20px; max-width: 500px;">
+      Everything in Pro, plus hand-selected luxury items from our exclusive
+      European partners. Sophistication meets sensuality.
+    </p>
+
+    <div class="card-grid">
+      <div class="product-card" style="border-color: rgba(199, 125, 255, 0.2);">
+        <div class="product-icon icon-lg" style="background: radial-gradient(circle at 30% 30%, #d4a0ff, #7b2fbe); box-shadow: 0 4px 20px rgba(199, 125, 255, 0.3);">🌸</div>
+        <div class="info">
+          <h4>Galimard Cherry Noir Perfume</h4>
+          <p>Bespoke fragrance from Maison Galimard, Grasse, France — the world's perfume capital since 1747. Notes of black cherry, Damask rose, and vanilla bourbon.</p>
+          <div class="price">$65 – $95</div>
+        </div>
+      </div>
+
+      <div class="product-card" style="border-color: rgba(199, 125, 255, 0.2);">
+        <div class="product-icon icon-lg" style="background: radial-gradient(circle at 30% 30%, #d4a0ff, #7b2fbe); box-shadow: 0 4px 20px rgba(199, 125, 255, 0.3);">👙</div>
+        <div class="info">
+          <h4>French Lace Lingerie</h4>
+          <p>Handcrafted from authentic Calais Lace — a centuries-old French textile tradition. Delicate, luxurious, and unmistakably European.</p>
+          <div class="price">$180 – $280</div>
+        </div>
+      </div>
+
+      <div class="product-card card-full" style="border-color: rgba(199, 125, 255, 0.2);">
+        <div class="product-icon icon-lg" style="background: radial-gradient(circle at 30% 30%, #d4a0ff, #7b2fbe); box-shadow: 0 4px 20px rgba(199, 125, 255, 0.3);">💧</div>
+        <div class="info">
+          <h4>Body Oils</h4>
+          <p>Luxe body oil blend with argan, jojoba, and cherry blossom extract. Shimmer finish for camera-ready glow. Lightweight, non-greasy formula.</p>
+          <div class="price">$45 – $65</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-estimate">
+      <span class="est-label">Elite Tier Total Est. Value</span>
+      <span class="est-value">$1,140 – $1,640+</span>
+    </div>
+  </div>
+
+  <div class="page-number">04</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 5 — PREMIER + VIRTUOSO TIERS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-cherry" style="bottom: -200px; right: -200px;"></div>
+  <div class="bg-glow-gold" style="top: -150px; left: -150px;"></div>
+  <div class="corner-accent corner-tl"></div>
+  <div class="corner-accent corner-br"></div>
+
+  <div class="page-inner">
+    <div class="tier-badge tier-premier">✦✦✦✦ Premier Tier — +4 Premium Items</div>
+
+    <p style="font-size: 13px; color: var(--white-muted); margin-bottom: 20px; max-width: 500px;">
+      Everything in Elite, plus curated fashion and beauty essentials
+      that complete the ultimate performer's collection.
+    </p>
+
+    <div class="card-grid">
+      <div class="product-card" style="border-color: rgba(77, 212, 172, 0.2);">
+        <div class="product-icon icon-lg" style="background: radial-gradient(circle at 30% 30%, #6be8c4, #2a8a6a); box-shadow: 0 4px 20px rgba(77, 212, 172, 0.3);">👙</div>
+        <div class="info">
+          <h4>Italian Swimwear</h4>
+          <p>Designer Italian swimwear with CherryStim-exclusive colorways. Premium fabrics, fashion-forward cuts.</p>
+          <div class="price">$120 – $180</div>
+        </div>
+      </div>
+
+      <div class="product-card" style="border-color: rgba(77, 212, 172, 0.2);">
+        <div class="product-icon icon-lg" style="background: radial-gradient(circle at 30% 30%, #6be8c4, #2a8a6a); box-shadow: 0 4px 20px rgba(77, 212, 172, 0.3);">🥻</div>
+        <div class="info">
+          <h4>Silk Robe</h4>
+          <p>100% mulberry silk robe with embroidered CherryStim monogram. Kimonoo-style wrap with contrast piping.</p>
+          <div class="price">$65 – $95</div>
+        </div>
+      </div>
+
+      <div class="product-card" style="border-color: rgba(77, 212, 172, 0.2);">
+        <div class="product-icon icon-lg" style="background: radial-gradient(circle at 30% 30%, #6be8c4, #2a8a6a); box-shadow: 0 4px 20px rgba(77, 212, 172, 0.3);">💄</div>
+        <div class="info">
+          <h4>Glam Kit</h4>
+          <p>Professional makeup essentials: contour palette, setting spray, lashes, lip kit, and beauty blender set.</p>
+          <div class="price">$85 – $130</div>
+        </div>
+      </div>
+
+      <div class="product-card" style="border-color: rgba(77, 212, 172, 0.2);">
+        <div class="product-icon icon-lg" style="background: radial-gradient(circle at 30% 30%, #6be8c4, #2a8a6a); box-shadow: 0 4px 20px rgba(77, 212, 172, 0.3);">🌑</div>
+        <div class="info">
+          <h4>UV Blacklight Sign</h4>
+          <p>Ultraviolet LED sign that glows under blacklight. Creates stunning ambient effect for evening performances.</p>
+          <div class="price">$75 – $110</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-estimate">
+      <span class="est-label">Premier Tier Total Est. Value</span>
+      <span class="est-value">$1,485 – $2,155+</span>
+    </div>
+
+    <div class="cherry-rule"></div>
+
+    <!-- VIRTUOSO -->
+    <div style="text-align: center; margin-top: 8px;">
+      <div class="tier-badge tier-virtuoso" style="font-size: 14px; padding: 10px 32px;">
+        ✦✦✦✦✦ VIRTUOSO — THE COMPLETE COLLECTION
+      </div>
+
+      <p style="font-size: 15px; color: var(--white); margin: 24px auto 16px; max-width: 440px; line-height: 1.7;">
+        <em>Everything.</em> Every item from every tier — Rising through Premier —
+        assembled into one magnificent welcome experience.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 16px; margin: 24px 0; flex-wrap: wrap;">
+        <div class="product-icon icon-cherry">📦</div>
+        <div class="product-icon icon-gold">💳</div>
+        <div class="product-icon icon-dark">📖</div>
+        <div class="product-icon icon-cherry">💃</div>
+        <div class="product-icon icon-gold">👠</div>
+        <div class="product-icon icon-dark">✨</div>
+        <div class="product-icon icon-cherry">💡</div>
+        <div class="product-icon icon-gold">📱</div>
+        <div class="product-icon icon-dark">🧴</div>
+        <div class="product-icon icon-cherry">🌸</div>
+        <div class="product-icon icon-gold">👙</div>
+        <div class="product-icon icon-dark">💧</div>
+        <div class="product-icon icon-cherry">🥻</div>
+        <div class="product-icon icon-gold">💄</div>
+        <div class="product-icon icon-dark">🌑</div>
+      </div>
+
+      <div class="tier-estimate" style="max-width: 400px; margin: 0 auto; border-color: var(--gold); background: rgba(255, 215, 0, 0.08);">
+        <span class="est-label">Complete Collection Value</span>
+        <span class="est-value" style="font-size: 22px;">$1,200 – $1,800+</span>
+      </div>
+
+      <p style="font-size: 12px; color: var(--white-muted); margin-top: 16px; font-style: italic;">
+        Reserved for our most dedicated performers. The ultimate expression of the CherryStim commitment.
+      </p>
+    </div>
+  </div>
+
+  <div class="page-number page-number-left">05</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 6 — CLIENT PACKAGES: FEMALE & MALE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-cherry" style="top: -100px; left: 50%; transform: translateX(-50%);"></div>
+  <div class="corner-accent corner-tl"></div>
+  <div class="corner-accent corner-br"></div>
+
+  <div class="page-inner">
+    <div class="section-title">Client Packages</div>
+    <div class="section-subtitle">Tailored welcome collections by preference</div>
+    <div class="gold-rule"></div>
+
+    <!-- FEMALE -->
+    <div class="gender-section gender-female">
+      <h3>♀ Female Client Package</h3>
+      <p style="font-size: 12px; color: var(--white-muted); margin-bottom: 16px; font-style: italic;">
+        A luxurious collection of beauty and fragrance essentials
+      </p>
+      <div class="card-grid">
+        <div class="product-card">
+          <div class="product-icon icon-sm" style="background: radial-gradient(circle at 30% 30%, #ff8ec4, #cc2277);">🌸</div>
+          <div class="info">
+            <h4>Cherry Noir Perfume</h4>
+            <p>Galimard, Grasse France. Black cherry, rose, vanilla.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-icon icon-sm" style="background: radial-gradient(circle at 30% 30%, #ff8ec4, #cc2277);">💄</div>
+          <div class="info">
+            <h4>Lip Gloss Duo</h4>
+            <p>Cherry-tinted and clear shimmer. Long-lasting formula.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-icon icon-sm" style="background: radial-gradient(circle at 30% 30%, #ff8ec4, #cc2277);">🧣</div>
+          <div class="info">
+            <h4>Silk Scarf</h4>
+            <p>Pure silk with cherry blossom print. CherryStim exclusive.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-icon icon-sm" style="background: radial-gradient(circle at 30% 30%, #ff8ec4, #cc2277);">💄</div>
+          <div class="info">
+            <h4>Cosmetics Kit</h4>
+            <p>Curated beauty essentials in a branded pouch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MALE -->
+    <div class="gender-section gender-male">
+      <h3>♂ Male Client Package</h3>
+      <p style="font-size: 12px; color: var(--white-muted); margin-bottom: 16px; font-style: italic;">
+        Distinguished grooming and accessories for the modern gentleman
+      </p>
+      <div class="card-grid">
+        <div class="product-card">
+          <div class="product-icon icon-sm" style="background: radial-gradient(circle at 30% 30%, #8eb8ff, #2255bb);">🖤</div>
+          <div class="info">
+            <h4>Black Cherry Reserve Cologne</h4>
+            <p>Deep, woody fragrance with cherry and leather notes.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-icon icon-sm" style="background: radial-gradient(circle at 30% 30%, #8eb8ff, #2255bb);">🎩</div>
+          <div class="info">
+            <h4>Silk Pocket Square</h4>
+            <p>Hand-rolled edges. Cherry red with gold CherryStim crest.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-icon icon-sm" style="background: radial-gradient(circle at 30% 30%, #8eb8ff, #2255bb);">✨</div>
+          <div class="info">
+            <h4>Gold Cufflinks</h4>
+            <p>18k gold-plated with engraved CherryStim monogram.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-icon icon-sm" style="background: radial-gradient(circle at 30% 30%, #8eb8ff, #2255bb);">🧔</div>
+          <div class="info">
+            <h4>Grooming Kit</h4>
+            <p>Premium beard oil, comb, and styling wax set.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-number">06</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 7 — CLIENT PACKAGES: ALL GENDER + LUXURY PARTNERS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-gold" style="bottom: -200px; left: -200px;"></div>
+  <div class="corner-accent corner-tr"></div>
+  <div class="corner-accent corner-bl"></div>
+
+  <div class="page-inner">
+    <!-- ALL GENDER -->
+    <div class="gender-section gender-all">
+      <h3>⚡ All Clients — Universal Items</h3>
+      <p style="font-size: 12px; color: var(--white-muted); margin-bottom: 16px; font-style: italic;">
+        Every client receives these premium essentials regardless of package type
+      </p>
+
+      <div class="card-grid-3">
+        <div class="micro-card">
+          <span class="micro-emoji">💳</span>
+          <div class="micro-info">
+            <div class="micro-name">Metal Card</div>
+            <div class="micro-desc">Branded debit card</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <span class="micro-emoji">📖</span>
+          <div class="micro-info">
+            <div class="micro-name">Magazine</div>
+            <div class="micro-desc">Welcome editorial</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <span class="micro-emoji">🧲</span>
+          <div class="micro-info">
+            <div class="micro-name">Magnets</div>
+            <div class="micro-desc">Collectible set of 4</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <span class="micro-emoji">📱</span>
+          <div class="micro-info">
+            <div class="micro-name">Phone Ring</div>
+            <div class="micro-desc">Gold grip stand</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <span class="micro-emoji">✨</span>
+          <div class="micro-info">
+            <div class="micro-name">Mini Neon</div>
+            <div class="micro-desc">Desktop LED sign</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <span class="micro-emoji">🧴</span>
+          <div class="micro-info">
+            <div class="micro-name">Tanning</div>
+            <div class="micro-desc">Self-tan lotion</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <span class="micro-emoji">💧</span>
+          <div class="micro-info">
+            <div class="micro-name">Body Oil</div>
+            <div class="micro-desc">Shimmer blend</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <span class="micro-emoji">🥻</span>
+          <div class="micro-info">
+            <div class="micro-name">Silk Robe</div>
+            <div class="micro-desc">Mulberry silk</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <span class="micro-emoji">🥽</span>
+          <div class="micro-info">
+            <div class="micro-name">VR Case</div>
+            <div class="micro-desc">Branded VR headset</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cherry-rule"></div>
+
+    <!-- LUXURY PARTNERS -->
+    <div class="section-title" style="font-size: 22px;">Luxury Partners</div>
+    <div class="section-subtitle">The artisans and houses behind our collection</div>
+    <div class="gold-rule"></div>
+
+    <div class="card-grid">
+      <div class="partner-card">
+        <div style="font-size: 36px; margin-bottom: 8px;">🌸</div>
+        <h4>Galimard</h4>
+        <div class="location">Grasse, France — Est. 1747</div>
+        <div class="desc">One of the world's oldest perfume houses. Creators of Cherry Noir, our signature fragrance.</div>
+      </div>
+      <div class="partner-card">
+        <div style="font-size: 36px; margin-bottom: 8px;">🏛️</div>
+        <h4>MonLuxe Paris</h4>
+        <div class="location">Paris, France</div>
+        <div class="desc">Luxury beauty and skincare atelier. Exclusive formulations for the CherryStim body oil line.</div>
+      </div>
+      <div class="partner-card">
+        <div style="font-size: 36px; margin-bottom: 8px;">💎</div>
+        <h4>Ivaré Luxe</h4>
+        <div class="location">Milan, Italy</div>
+        <div class="desc">Contemporary luxury accessories. Designs our gold cufflinks and branded jewelry pieces.</div>
+      </div>
+      <div class="partner-card">
+        <div style="font-size: 36px; margin-bottom: 8px;">💃</div>
+        <h4>Lupit Pole</h4>
+        <div class="location">Ljubljana, Slovenia</div>
+        <div class="desc">World-leading dance pole manufacturer. Innovative LED pole technology exclusively for CherryStim.</div>
+      </div>
+      <div class="partner-card">
+        <div style="font-size: 36px; margin-bottom: 8px;">👠</div>
+        <h4>Pleaser USA</h4>
+        <div class="location">Los Angeles, California</div>
+        <div class="desc">The industry standard in platform heels. Trusted by professional dancers worldwide.</div>
+      </div>
+      <div class="partner-card">
+        <div style="font-size: 36px; margin-bottom: 8px;">🧵</div>
+        <h4>Calais Lace</h4>
+        <div class="location">Calais, France</div>
+        <div class="desc">Centuries-old French lace tradition. Supplies the exquisite lace for our lingerie collection.</div>
+      </div>
+      <div class="partner-card">
+        <div style="font-size: 36px; margin-bottom: 8px;">💳</div>
+        <h4>CARDMAKER</h4>
+        <div class="location">Manufacturing Partner</div>
+        <div class="desc">Premium metal card fabrication. Custom-minted CherryStim debit cards with NFC technology.</div>
+      </div>
+      <div class="partner-card">
+        <div style="font-size: 36px; margin-bottom: 8px;">🏦</div>
+        <h4>Marqeta</h4>
+        <div class="location">Oakland, California</div>
+        <div class="desc">Modern card issuing platform. Powers CherryStim's instant payout infrastructure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-number page-number-left">07</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 8 — ONBOARDING FLOWS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-cherry" style="top: -200px; right: -200px;"></div>
+  <div class="corner-accent corner-tl"></div>
+  <div class="corner-accent corner-br"></div>
+
+  <div class="page-inner">
+    <div class="section-title">Onboarding Flows</div>
+    <div class="section-subtitle">From application to welcome box — every step mapped</div>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <!-- Dancer Flow -->
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; font-size: 16px; color: var(--cherry); letter-spacing: 0.12em; margin-bottom: 16px;">
+          DANCER — 12 STEPS
+        </h3>
+
+        <ol class="step-list" style="font-size: 12px;">
+          <li>
+            <div class="step-text"><strong>Application</strong><br>Submit online application with ID verification</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Review</strong><br>CherryStim team reviews within 24–48 hours</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Approval</strong><br>Welcome email with account activation link</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Profile Setup</strong><br>Complete profile, bio, photos, and preferences</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Tier Selection</strong><br>Choose package tier based on goals</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Address Confirm</strong><br>Verify shipping address for welcome box</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Card Issuance</strong><br>Metal debit card minted and personalized</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Box Assembly</strong><br>Welcome package curated per tier selection</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Quality Check</strong><br>Each box inspected before gold seal applied</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Shipping</strong><br>Express tracked delivery via premium carrier</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Unboxing</strong><br>Welcome email triggers with setup guides</div>
+          </li>
+          <li>
+            <div class="step-text"><strong>Go Live</strong><br>First stream setup with dedicated support</div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Client Flow -->
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; font-size: 16px; color: var(--gold); letter-spacing: 0.12em; margin-bottom: 16px;">
+          CLIENT — 8 STEPS
+        </h3>
+
+        <ol class="step-list" style="font-size: 12px;">
+          <li style="border-left-color: var(--gold);">
+            <div class="step-text"><strong>Registration</strong><br>Create account with email or social login</div>
+          </li>
+          <li style="border-left-color: var(--gold);">
+            <div class="step-text"><strong>Verification</strong><br>Age and identity verification (18+)</div>
+          </li>
+          <li style="border-left-color: var(--gold);">
+            <div class="step-text"><strong>Preferences</strong><br>Select gender package preference</div>
+          </li>
+          <li style="border-left-color: var(--gold);">
+            <div class="step-text"><strong>Subscription</strong><br>Choose membership plan and payment method</div>
+          </li>
+          <li style="border-left-color: var(--gold);">
+            <div class="step-text"><strong>Address</strong><br>Confirm shipping for welcome package</div>
+          </li>
+          <li style="border-left-color: var(--gold);">
+            <div class="step-text"><strong>Fulfillment</strong><br>Package assembled and shipped</div>
+          </li>
+          <li style="border-left-color: var(--gold);">
+            <div class="step-text"><strong>Delivery</strong><br>Track package to doorstep</div>
+          </li>
+          <li style="border-left-color: var(--gold);">
+            <div class="step-text"><strong>Explore</strong><br>Full platform access unlocked</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-number">08</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 9 — ORDER TRACKING PIPELINE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-gold" style="top: 50%; right: -200px; transform: translateY(-50%);"></div>
+  <div class="corner-accent corner-tl"></div>
+  <div class="corner-accent corner-bl"></div>
+
+  <div class="page-inner">
+    <div class="section-title">Order Tracking Pipeline</div>
+    <div class="section-subtitle">11-stage fulfillment — from order to doorstep</div>
+    <div class="gold-rule"></div>
+
+    <div class="pipeline" style="margin-top: 16px;">
+      <div class="pipeline-stage">
+        <span class="stage-num">01</span>
+        <span class="stage-label">Order Received</span>
+        <span class="stage-desc">System logs new welcome package order</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">02</span>
+        <span class="stage-label">Tier Confirmed</span>
+        <span class="stage-desc">Package tier validated against membership level</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">03</span>
+        <span class="stage-label">Card Minting</span>
+        <span class="stage-desc">Metal debit card fabrication initiated</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">04</span>
+        <span class="stage-label">Item Sourcing</span>
+        <span class="stage-desc">Tier-specific items pulled from partner inventory</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">05</span>
+        <span class="stage-label">Personalization</span>
+        <span class="stage-desc">Name engraving, size selection, fragrance choice</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">06</span>
+        <span class="stage-label">Box Assembly</span>
+        <span class="stage-desc">Items arranged in matte black box with tissue</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">07</span>
+        <span class="stage-label">Quality Inspection</span>
+        <span class="stage-desc">Visual and checklist inspection by fulfillment team</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">08</span>
+        <span class="stage-label">Gold Seal Applied</span>
+        <span class="stage-desc">Hand-pressed wax seal — box officially sealed</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">09</span>
+        <span class="stage-label">Carrier Handoff</span>
+        <span class="stage-desc">Premium carrier pickup with tracking generated</span>
+      </div>
+      <div class="pipeline-stage">
+        <span class="stage-num">10</span>
+        <span class="stage-label">In Transit</span>
+        <span class="stage-desc">Real-time tracking updates via SMS and email</span>
+      </div>
+      <div class="pipeline-stage" style="border-left-color: var(--gold);">
+        <span class="stage-num">11</span>
+        <span class="stage-label" style="color: var(--gold);">Delivered ✓</span>
+        <span class="stage-desc">Confirmation photo &amp; welcome email triggered</span>
+      </div>
+    </div>
+
+    <div class="cherry-rule" style="margin-top: 32px;"></div>
+
+    <div style="display: flex; gap: 24px; justify-content: center; margin-top: 16px;">
+      <div style="text-align: center;">
+        <div style="font-family: 'Cinzel', serif; font-size: 28px; color: var(--gold); font-weight: 700;">3–5</div>
+        <div style="font-size: 11px; color: var(--white-muted); text-transform: uppercase; letter-spacing: 0.1em;">Business Days</div>
+        <div style="font-size: 10px; color: var(--white-muted);">Domestic Shipping</div>
+      </div>
+      <div style="width: 1px; background: var(--gray-light);"></div>
+      <div style="text-align: center;">
+        <div style="font-family: 'Cinzel', serif; font-size: 28px; color: var(--gold); font-weight: 700;">7–12</div>
+        <div style="font-size: 11px; color: var(--white-muted); text-transform: uppercase; letter-spacing: 0.1em;">Business Days</div>
+        <div style="font-size: 10px; color: var(--white-muted);">International Shipping</div>
+      </div>
+      <div style="width: 1px; background: var(--gray-light);"></div>
+      <div style="text-align: center;">
+        <div style="font-family: 'Cinzel', serif; font-size: 28px; color: var(--gold); font-weight: 700;">100%</div>
+        <div style="font-size: 11px; color: var(--white-muted); text-transform: uppercase; letter-spacing: 0.1em;">Tracked</div>
+        <div style="font-size: 10px; color: var(--white-muted);">Every Package</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-number page-number-left">09</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PAGE 10 — BACK COVER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="bg-glow-cherry" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; opacity: 0.5;"></div>
+  <div class="bg-glow-gold" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px;"></div>
+  <div class="corner-accent corner-tl"></div>
+  <div class="corner-accent corner-tr"></div>
+  <div class="corner-accent corner-bl"></div>
+  <div class="corner-accent corner-br"></div>
+
+  <div class="back-cover">
+    <div class="logo-mark">🍒</div>
+
+    <div class="brand-name">CHERRYSTIM</div>
+    <div class="brand-sub">Where Luxury Meets Liberation</div>
+
+    <div class="cover-line"></div>
+
+    <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: var(--white); max-width: 380px; line-height: 1.8; margin-bottom: 32px;">
+      "Every package is a promise — of quality, of beauty, of a platform that believes in the artistry of its performers."
+    </p>
+
+    <div class="cover-line"></div>
+
+    <div style="display: flex; gap: 32px; margin: 24px 0;">
+      <div style="text-align: center;">
+        <div style="font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold); letter-spacing: 0.15em;">WEBSITE</div>
+        <div style="font-size: 12px; color: var(--white-muted); margin-top: 4px;">cherrystim.com</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold); letter-spacing: 0.15em;">SUPPORT</div>
+        <div style="font-size: 12px; color: var(--white-muted); margin-top: 4px;">support@cherrystim.com</div>
+      </div>
+    </div>
+
+    <div class="cover-line"></div>
+
+    <div class="legal">
+      © 2024 CherryStim, Inc. All rights reserved. This catalog is confidential and intended
+      for authorized personnel only. Product specifications, pricing, and availability subject to change.
+      All partner logos and trademarks are property of their respective owners.
+    </div>
+
+    <div style="margin-top: 24px; font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold); letter-spacing: 0.3em; opacity: 0.4;">
+      MMXXIV
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

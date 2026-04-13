@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHERRYSTIM — Compliance &amp; Governance Magazine</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  /* ─── RESET & BASE ─── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    background: #050002;
+    color: #e8e0e0;
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.72;
+    overflow-x: hidden;
+  }
+
+  /* ─── DESIGN TOKENS ─── */
+  :root {
+    --cherry: #ff0033;
+    --gold: #ffd700;
+    --dark: #050002;
+    --dark-card: #0d0408;
+    --dark-card-border: #1a0a10;
+    --text-primary: #e8e0e0;
+    --text-muted: #9a8a8e;
+    --gradient-cherry: linear-gradient(135deg, #ff0033, #cc0029, #ff0033);
+    --gradient-gold: linear-gradient(135deg, #ffd700, #ffaa00, #ffd700);
+    --gradient-mixed: linear-gradient(135deg, #ff0033, #ffd700);
+    --glow-cherry: 0 0 40px rgba(255,0,51,0.3);
+    --glow-gold: 0 0 40px rgba(255,215,0,0.3);
+  }
+
+  /* ─── PAGE / PRINT ─── */
+  .page {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 60px 56px;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  @media print {
+    body { background: #050002; }
+    .page { padding: 40px 48px; min-height: auto; height: 100vh; }
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  h1, h2, h3, h4 { font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 0.04em; }
+  h1 { font-size: 2.8rem; line-height: 1.15; }
+  h2 { font-size: 2rem; line-height: 1.2; margin-bottom: 24px; }
+  h3 { font-size: 1.35rem; line-height: 1.3; margin-bottom: 16px; }
+  p { margin-bottom: 14px; }
+
+  .text-cherry { color: var(--cherry); }
+  .text-gold { color: var(--gold); }
+  .text-muted { color: var(--text-muted); }
+
+  .gradient-text {
+    background: var(--gradient-mixed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── DECORATIVE ELEMENTS ─── */
+  .cherry-line {
+    height: 3px;
+    background: var(--gradient-cherry);
+    border: none;
+    margin: 28px 0;
+    border-radius: 2px;
+  }
+  .gold-line {
+    height: 2px;
+    background: var(--gradient-gold);
+    border: none;
+    margin: 20px 0;
+    border-radius: 2px;
+  }
+  .thin-rule {
+    height: 1px;
+    background: rgba(255,0,51,0.2);
+    border: none;
+    margin: 18px 0;
+  }
+
+  .page-number {
+    position: absolute;
+    bottom: 30px;
+    right: 56px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: var(--cherry);
+    letter-spacing: 0.15em;
+  }
+  .page-footer-left {
+    position: absolute;
+    bottom: 30px;
+    left: 56px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─── EMOJI ICON CIRCLES ─── */
+  .icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    flex-shrink: 0;
+  }
+  .icon-circle.cherry-bg {
+    background: var(--gradient-cherry);
+    box-shadow: var(--glow-cherry);
+  }
+  .icon-circle.gold-bg {
+    background: var(--gradient-gold);
+    box-shadow: var(--glow-gold);
+  }
+  .icon-circle.mixed-bg {
+    background: var(--gradient-mixed);
+    box-shadow: 0 0 40px rgba(255,100,51,0.3);
+  }
+  .icon-circle-sm {
+    width: 56px;
+    height: 56px;
+    font-size: 1.6rem;
+  }
+  .icon-circle-lg {
+    width: 110px;
+    height: 110px;
+    font-size: 3rem;
+  }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-card-border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-cherry);
+  }
+  .card.gold-accent::before { background: var(--gradient-gold); }
+  .card.mixed-accent::before { background: var(--gradient-mixed); }
+
+  /* ─── GRID LAYOUTS ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* ─── FLEX UTILS ─── */
+  .flex-row { display: flex; align-items: center; gap: 20px; }
+  .flex-col { display: flex; flex-direction: column; }
+  .flex-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ─── TAGS / BADGES ─── */
+  .tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .tag-cherry { background: rgba(255,0,51,0.15); color: var(--cherry); border: 1px solid rgba(255,0,51,0.3); }
+  .tag-gold { background: rgba(255,215,0,0.1); color: var(--gold); border: 1px solid rgba(255,215,0,0.25); }
+  .tag-dark { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.08); }
+
+  /* ─── TABLES ─── */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+  th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid rgba(255,215,0,0.2);
+  }
+  td {
+    padding: 9px 14px;
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,0,51,0.03); }
+
+  /* ─── LISTS ─── */
+  ul { list-style: none; padding-left: 0; }
+  ul li { position: relative; padding-left: 22px; margin-bottom: 8px; font-size: 0.92rem; }
+  ul li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--cherry);
+    font-size: 0.55rem;
+    top: 6px;
+  }
+  ul.gold-bullets li::before { color: var(--gold); }
+
+  /* ─── PULL QUOTE ─── */
+  .pull-quote {
+    border-left: 4px solid var(--cherry);
+    padding: 20px 28px;
+    margin: 24px 0;
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--text-primary);
+    background: rgba(255,0,51,0.03);
+    border-radius: 0 10px 10px 0;
+  }
+
+  /* ─── COVER SPECIFIC ─── */
+  .cover-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    position: relative;
+  }
+  .cover-page::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,0,51,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .cover-page::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .cover-badge {
+    display: inline-block;
+    padding: 10px 36px;
+    border: 2px solid var(--gold);
+    border-radius: 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .cover-title {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+  }
+  .cover-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+  .cover-divider {
+    width: 120px;
+    height: 3px;
+    background: var(--gradient-mixed);
+    margin: 0 auto 32px auto;
+    border-radius: 2px;
+  }
+  .cover-details {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .section-header .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  /* ─── WORD GRID ─── */
+  .word-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .word-chip {
+    display: inline-block;
+    padding: 5px 14px;
+    background: rgba(255,0,51,0.08);
+    border: 1px solid rgba(255,0,51,0.2);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #ff6677;
+    letter-spacing: 0.03em;
+  }
+  .word-chip.phrase {
+    background: rgba(255,215,0,0.06);
+    border-color: rgba(255,215,0,0.18);
+    color: #eed070;
+  }
+
+  /* ─── BACK COVER ─── */
+  .back-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    position: relative;
+  }
+  .back-cover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,0,51,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* ─── CODE BLOCK ─── */
+  .code-block {
+    background: #0a0305;
+    border: 1px solid var(--dark-card-border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: #ff8899;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 14px 0;
+  }
+  .code-block .comment { color: #666; }
+  .code-block .keyword { color: var(--gold); }
+  .code-block .string { color: #88ff88; }
+  .code-block .regex { color: #88ccff; }
+
+  /* ─── SEVERITY BADGE ─── */
+  .severity-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .severity-ban { background: rgba(255,0,51,0.2); color: #ff3355; border: 1px solid rgba(255,0,51,0.4); }
+  .severity-block { background: rgba(255,165,0,0.15); color: #ffaa44; border: 1px solid rgba(255,165,0,0.3); }
+  .severity-warn { background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.25); }
+
+  /* ─── STAT BOXES ─── */
+  .stat-box {
+    text-align: center;
+    padding: 20px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-card-border);
+    border-radius: 12px;
+  }
+  .stat-box .stat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .stat-box .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Cinzel', serif;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .timeline-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cherry);
+    margin-top: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(255,0,51,0.4);
+  }
+  .timeline-dot.gold { background: var(--gold); box-shadow: 0 0 12px rgba(255,215,0,0.4); }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  .progress-bar .fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--gradient-cherry);
+  }
+  .progress-bar .fill.gold { background: var(--gradient-gold); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page cover-page">
+  <div class="cover-badge">Official Platform Document</div>
+  <div class="icon-circle icon-circle-lg cherry-bg" style="margin-bottom:32px;">🛡️</div>
+  <h1 class="cover-title">
+    <span class="text-cherry">CHERRY</span><span class="text-gold">STIM</span>
+  </h1>
+  <div class="cover-divider"></div>
+  <h2 style="font-size:1.6rem; font-weight:600; margin-bottom:12px; letter-spacing:0.12em;">
+    COMPLIANCE &amp; GOVERNANCE
+  </h2>
+  <p class="cover-subtitle">
+    The definitive reference for platform content policies, moderation systems, rating mechanics, financial compliance, data privacy, and user safety protocols.
+  </p>
+  <div style="display:flex; gap:14px; margin-bottom:40px; flex-wrap:wrap; justify-content:center;">
+    <span class="tag tag-cherry">MODERATION</span>
+    <span class="tag tag-gold">KYC / AML</span>
+    <span class="tag tag-cherry">PCI-DSS</span>
+    <span class="tag tag-gold">GDPR</span>
+    <span class="tag tag-cherry">CCPA</span>
+    <span class="tag tag-gold">SAFETY</span>
+  </div>
+  <p class="cover-details">EDITION 1.0 &nbsp;•&nbsp; 2025 &nbsp;•&nbsp; CONFIDENTIAL</p>
+  <p class="cover-details" style="margin-top:8px;">10 PAGES &nbsp;•&nbsp; INTERNAL COMPLIANCE REFERENCE</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 2 — CONTENT POLICIES / COMMUNITY GUIDELINES
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle cherry-bg">📜</div>
+    <div>
+      <div class="section-label">Chapter 01</div>
+      <h2 class="text-cherry" style="margin-bottom:0;">Content Policies &amp; Community Guidelines</h2>
+    </div>
+  </div>
+  <hr class="cherry-line">
+
+  <p>CherryStim operates as a <strong>premium immersive live-streaming platform</strong> with 2D, 3D, VR, and fully Immersive streaming modes powered by <code>@react-three/fiber</code> and <code>@react-three/xr</code>. All content and communication must comply with the following community standards.</p>
+
+  <div class="card">
+    <h3 class="text-gold">🌟 Core Principles</h3>
+    <hr class="gold-line">
+    <ul class="gold-bullets">
+      <li><strong>Zero-Tolerance for Solicitation</strong> — Any attempt to exchange money for sexual services is an instant permanent ban. Our platform is entertainment-only.</li>
+      <li><strong>Respect &amp; Consent</strong> — All interactions must be consensual. Dancers control their stream, blocking, and muting at all times.</li>
+      <li><strong>No External Payment Solicitation</strong> — Requesting CashApp, Venmo, PayPal, or any off-platform payments is prohibited and auto-detected.</li>
+      <li><strong>No Contact Exchange</strong> — Sharing phone numbers, addresses, social media handles, or requests to meet in person are blocked.</li>
+      <li><strong>Age-Gated Platform</strong> — All users must be 18+ with verified identity. Age verification is enforced at gate entry.</li>
+      <li><strong>Inclusive Environment</strong> — Discrimination based on race, gender, sexuality, religion, or disability results in immediate suspension.</li>
+    </ul>
+  </div>
+
+  <div class="two-col">
+    <div class="card gold-accent">
+      <h3 class="text-gold">🔒 Prohibited Content</h3>
+      <ul>
+        <li>Sexually explicit / pornographic content</li>
+        <li>Drug use or drug solicitation</li>
+        <li>Violence, threats, or harassment</li>
+        <li>Doxxing or sharing private info</li>
+        <li>Spam, scams, or phishing</li>
+        <li>Intellectual property infringement</li>
+        <li>Impersonation of platform staff</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 class="text-cherry">⚖️ Enforcement Tiers</h3>
+      <ul>
+        <li><span class="severity-badge severity-warn">⚠ Warning</span> — First minor offense, message blocked</li>
+        <li><span class="severity-badge severity-block">🔇 Mute</span> — 10-minute mute for repeat violations</li>
+        <li><span class="severity-badge severity-ban">🚫 Temp Ban</span> — 24-hour ban after 3+ violations</li>
+        <li><strong>Permanent Ban</strong> — Solicitation phrases trigger instant escalation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    "CherryStim exists to empower performers with cutting-edge technology in a safe, respectful environment. Every policy exists to protect our community."
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">02</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 3 — MODERATION ENGINE: BLOCKED WORDS
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle mixed-bg">🤖</div>
+    <div>
+      <div class="section-label">Chapter 02 — Part A</div>
+      <h2 class="gradient-text" style="margin-bottom:0;">Moderation Engine — Blocked Word List</h2>
+    </div>
+  </div>
+  <hr class="cherry-line">
+
+  <p>The CherryStim moderation engine (<code>lib/moderation.ts</code>) scans every text message and voice transcript in real time using a multi-layered approach: exact word matching, phrase detection, regex pattern analysis, and leet-speak normalization. Below is the <strong>complete blocked-word dictionary</strong> — all 34+ terms that trigger automatic flagging.</p>
+
+  <div class="card">
+    <h3 class="text-cherry">🚫 Complete Blocked Words (34 terms)</h3>
+    <p class="text-muted" style="font-size:0.82rem; margin-bottom:14px;">Each word is matched via exact match and substring detection after normalization. Leet-speak variants are auto-generated.</p>
+    <div class="word-grid">
+      <span class="word-chip">sex</span>
+      <span class="word-chip">fuck</span>
+      <span class="word-chip">blowjob</span>
+      <span class="word-chip">bj</span>
+      <span class="word-chip">handjob</span>
+      <span class="word-chip">hj</span>
+      <span class="word-chip">prostitute</span>
+      <span class="word-chip">prostitution</span>
+      <span class="word-chip">hooker</span>
+      <span class="word-chip">whore</span>
+      <span class="word-chip">escort</span>
+      <span class="word-chip">pimp</span>
+      <span class="word-chip">trick</span>
+      <span class="word-chip">anal</span>
+      <span class="word-chip">cum</span>
+      <span class="word-chip">dick</span>
+      <span class="word-chip">cock</span>
+      <span class="word-chip">pussy</span>
+      <span class="word-chip">tits</span>
+      <span class="word-chip">nude</span>
+      <span class="word-chip">nudes</span>
+      <span class="word-chip">naked</span>
+      <span class="word-chip">orgasm</span>
+      <span class="word-chip">orgy</span>
+      <span class="word-chip">threesome</span>
+      <span class="word-chip">foursome</span>
+      <span class="word-chip">masturbate</span>
+      <span class="word-chip">masturbation</span>
+      <span class="word-chip">jerk off</span>
+      <span class="word-chip">suck me</span>
+      <span class="word-chip">ride me</span>
+      <span class="word-chip">bang me</span>
+      <span class="word-chip">onlyfans</span>
+      <span class="word-chip">fansly</span>
+      <span class="word-chip">cashapp me</span>
+      <span class="word-chip">venmo me</span>
+      <span class="word-chip">paypal me</span>
+      <span class="word-chip">flowers</span>
+    </div>
+  </div>
+
+  <div class="three-col" style="margin-top:20px;">
+    <div class="stat-box">
+      <span class="stat-number text-cherry">34+</span>
+      <span class="stat-label">Blocked Words</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number text-gold">21+</span>
+      <span class="stat-label">Blocked Phrases</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number gradient-text">7</span>
+      <span class="stat-label">Regex Patterns</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <h3 class="text-cherry">⚙️ Moderation Engine Architecture</h3>
+    <hr class="thin-rule">
+    <div class="two-col">
+      <div>
+        <h4 class="text-gold" style="font-size:0.95rem;">Processing Pipeline</h4>
+        <ul>
+          <li><strong>Step 1:</strong> Raw input received from chat or voice transcript</li>
+          <li><strong>Step 2:</strong> Text normalization (leet-speak → plain text)</li>
+          <li><strong>Step 3:</strong> Exact phrase matching against 21 blocked phrases</li>
+          <li><strong>Step 4:</strong> Word-level scanning against 34+ blocked words</li>
+          <li><strong>Step 5:</strong> Variant matching from pre-computed Set</li>
+          <li><strong>Step 6:</strong> Regex pattern matching (7 solicitation patterns)</li>
+          <li><strong>Step 7:</strong> Severity classification (none → warning → block → ban)</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-gold" style="font-size:0.95rem;">Enforcement Actions</h4>
+        <ul class="gold-bullets">
+          <li><strong>allow:</strong> Clean message — no action needed</li>
+          <li><strong>block_message:</strong> Message suppressed, user warned</li>
+          <li><strong>mute_user:</strong> 10-minute mute for repeat offenders</li>
+          <li><strong>temp_ban:</strong> 24-hour ban for serious violations</li>
+          <li><strong>Escalation:</strong> 3+ prior violations → temp_ban regardless of severity</li>
+          <li><strong>Phrase match:</strong> Always triggers "ban" severity → immediate temp_ban</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card gold-accent" style="margin-top:20px;">
+    <h3 class="text-gold">🔤 Leet-Speak Normalization Map</h3>
+    <p style="font-size:0.88rem;">Before matching, all text passes through the normalization engine:</p>
+    <table>
+      <tr><th>Character</th><th>Normalized To</th><th>Example</th></tr>
+      <tr><td><code>0</code></td><td>o</td><td>h00ker → hooker</td></tr>
+      <tr><td><code>1</code>, <code>!</code>, <code>|</code></td><td>i</td><td>p1mp → pimp</td></tr>
+      <tr><td><code>3</code></td><td>e</td><td>s3x → sex</td></tr>
+      <tr><td><code>4</code>, <code>@</code></td><td>a</td><td>@n@l → anal</td></tr>
+      <tr><td><code>5</code>, <code>$</code></td><td>s</td><td>$uck → suck</td></tr>
+      <tr><td><code>7</code></td><td>t</td><td>7rick → trick</td></tr>
+      <tr><td><code>8</code></td><td>b</td><td>8j → bj</td></tr>
+    </table>
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">03</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 4 — MODERATION ENGINE: PHRASES & REGEX PATTERNS
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle cherry-bg">🔍</div>
+    <div>
+      <div class="section-label">Chapter 02 — Part B</div>
+      <h2 class="text-cherry" style="margin-bottom:0;">Blocked Phrases &amp; Regex Patterns</h2>
+    </div>
+  </div>
+  <hr class="cherry-line">
+
+  <div class="card">
+    <h3 class="text-gold">💬 Complete Blocked Phrases (21 phrases)</h3>
+    <p class="text-muted" style="font-size:0.82rem; margin-bottom:14px;">Exact substring match on normalized text. Triggers <strong>BAN</strong> severity — instant 24-hour temp ban.</p>
+    <div class="word-grid">
+      <span class="word-chip phrase">pay for sex</span>
+      <span class="word-chip phrase">how much for sex</span>
+      <span class="word-chip phrase">how much for head</span>
+      <span class="word-chip phrase">how much for a bj</span>
+      <span class="word-chip phrase">how much for a blowjob</span>
+      <span class="word-chip phrase">sex for money</span>
+      <span class="word-chip phrase">cash for sex</span>
+      <span class="word-chip phrase">money for sex</span>
+      <span class="word-chip phrase">buy sex</span>
+      <span class="word-chip phrase">sell sex</span>
+      <span class="word-chip phrase">sex work</span>
+      <span class="word-chip phrase">escort service</span>
+      <span class="word-chip phrase">happy ending</span>
+      <span class="word-chip phrase">full service</span>
+      <span class="word-chip phrase">pay to play</span>
+      <span class="word-chip phrase">how much for everything</span>
+      <span class="word-chip phrase">what are your rates</span>
+      <span class="word-chip phrase">come to my hotel</span>
+      <span class="word-chip phrase">come to my room</span>
+      <span class="word-chip phrase">meet up for fun</span>
+      <span class="word-chip phrase">meet in person</span>
+    </div>
+  </div>
+
+  <div class="card mixed-accent">
+    <h3 class="gradient-text">🧬 Solicitation Regex Patterns (7 patterns)</h3>
+    <p style="font-size:0.88rem; margin-bottom:14px;">These regular expressions catch creative evasion attempts:</p>
+    <div class="code-block">
+<span class="comment">// Pattern 1: Price inquiry</span>
+<span class="regex">/how much (?:for|to|do you charge)/i</span>
+
+<span class="comment">// Pattern 2: Rate inquiry</span>
+<span class="regex">/what(?:'s| is) your (?:rate|price|fee)/i</span>
+
+<span class="comment">// Pattern 3: Meeting request</span>
+<span class="regex">/(?:can|will) you (?:meet|come|visit)/i</span>
+
+<span class="comment">// Pattern 4: Extra services</span>
+<span class="regex">/(?:do you|can you) (?:do|offer) (?:extra|more|private)/i</span>
+
+<span class="comment">// Pattern 5: Payment for services</span>
+<span class="regex">/pay(?:ing)? (?:you|for) (?:extra|private|special)/i</span>
+
+<span class="comment">// Pattern 6: Dollar amount + service</span>
+<span class="regex">/\$\d+.*(?:for|to get|hour|hr|session)/i</span>
+
+<span class="comment">// Pattern 7: Contact exchange</span>
+<span class="regex">/(?:send|give|get) (?:me )?(?:your|my) (?:number|address|location|snap|insta)/i</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="text-cherry">⚡ Variant Generation Engine</h3>
+    <p style="font-size:0.88rem;">Beyond normalization, the engine generates all known variants of each blocked word using a substitution map:</p>
+    <table>
+      <tr><th>Letter</th><th>Generated Variants</th></tr>
+      <tr><td>a</td><td><code>@</code>, <code>4</code></td></tr>
+      <tr><td>e</td><td><code>3</code></td></tr>
+      <tr><td>i</td><td><code>1</code>, <code>!</code>, <code>|</code></td></tr>
+      <tr><td>o</td><td><code>0</code></td></tr>
+      <tr><td>s</td><td><code>$</code>, <code>5</code></td></tr>
+      <tr><td>t</td><td><code>7</code></td></tr>
+      <tr><td>b</td><td><code>8</code></td></tr>
+      <tr><td>u</td><td><code>v</code></td></tr>
+      <tr><td>c</td><td><code>k</code></td></tr>
+      <tr><td>ck</td><td><code>k</code>, <code>cc</code></td></tr>
+    </table>
+    <p class="text-muted" style="font-size:0.82rem; margin-top:10px;">All variants are stored in a pre-computed <code>Set&lt;string&gt;</code> for O(1) lookup performance.</p>
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">04</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 5 — RATING SYSTEM RULES
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle gold-bg">⭐</div>
+    <div>
+      <div class="section-label">Chapter 03</div>
+      <h2 class="text-gold" style="margin-bottom:0;">Rating System Rules &amp; Weighted Scoring</h2>
+    </div>
+  </div>
+  <hr class="gold-line">
+
+  <p>The CherryStim rating system (<code>lib/ratings.ts</code>) uses <strong>asymmetric weighted scoring</strong> to protect performers from bad-faith client ratings while empowering dancer evaluations of client behavior.</p>
+
+  <div class="two-col">
+    <div class="card gold-accent">
+      <div class="flex-row" style="margin-bottom:16px;">
+        <div class="icon-circle icon-circle-sm gold-bg">⚖️</div>
+        <h3 class="text-gold" style="margin-bottom:0;">Weight Configuration</h3>
+      </div>
+      <table>
+        <tr><th>Direction</th><th>Weight</th></tr>
+        <tr><td>Client → Dancer</td><td><strong class="text-cherry">0.25 (1/4 weight)</strong></td></tr>
+        <tr><td>Dancer → Client</td><td><strong class="text-gold">1.0 (full weight)</strong></td></tr>
+      </table>
+      <p style="font-size:0.85rem; margin-top:12px;" class="text-muted">Client ratings of dancers carry only 25% weight — protecting performers from harassment-driven downvoting.</p>
+    </div>
+    <div class="card">
+      <div class="flex-row" style="margin-bottom:16px;">
+        <div class="icon-circle icon-circle-sm cherry-bg">🎯</div>
+        <h3 class="text-cherry" style="margin-bottom:0;">Threshold Rules</h3>
+      </div>
+      <ul>
+        <li><strong>Low Rating Threshold:</strong> 75%</li>
+        <li><strong>Low Visibility Threshold:</strong> 75%</li>
+        <li><strong>Bad Pattern Block:</strong> 14 days</li>
+        <li><strong>Bad Pattern Detection:</strong> Avg &lt; 40 over 5+ ratings in 30 days</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mixed-accent">
+    <h3 class="gradient-text">📊 Rating Impact Matrix</h3>
+    <hr class="thin-rule">
+    <table>
+      <tr><th>Rating Range</th><th>Access Level</th><th>Consequence</th></tr>
+      <tr><td>75 – 100%</td><td><span class="tag tag-gold">Full Access</span></td><td>No restrictions, full platform features</td></tr>
+      <tr><td>Below 75%</td><td><span class="tag tag-cherry">Limited Access</span></td><td>Reduced visibility, feature restrictions</td></tr>
+      <tr><td>Below 75% + Premium</td><td><span class="tag tag-gold">Full Access</span></td><td>Premium payment bypasses low-rating restrictions</td></tr>
+      <tr><td>Bad Pattern Detected</td><td><span class="tag tag-cherry">14-Day Block</span></td><td>Temporarily blocked for serial low-rating behavior</td></tr>
+    </table>
+  </div>
+
+  <div class="pull-quote">
+    "A dancer's livelihood should never be jeopardized by a vindictive client. Our 1/4 weight system ensures fair evaluation while keeping bad actors accountable."
+  </div>
+
+  <div class="card">
+    <h3 class="text-cherry">🔬 Weighted Rating Formula</h3>
+    <div class="code-block">
+<span class="keyword">function</span> computeWeightedRating(ratings, targetRole):
+  <span class="keyword">for each</span> rating:
+    weight = (rater is client AND target is dancer) ? <span class="string">0.25</span> : <span class="string">1.0</span>
+    weightedSum += score × weight
+    totalWeight += weight
+  <span class="keyword">return</span> round(weightedSum / totalWeight)
+
+<span class="comment">// Default rating for new users: 100 (benefit of the doubt)</span>
+<span class="comment">// Bad pattern detection: avg &lt; 40 over 5+ ratings in 30 days</span>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:16px;">
+    <div class="card">
+      <h3 class="text-gold" style="font-size:1rem;">Dancer Visibility</h3>
+      <ul>
+        <li><strong>Full:</strong> Rating ≥ 75% — appears in all browse results</li>
+        <li><strong>Reduced:</strong> Rating &lt; 75% — lower ranking in search</li>
+      </ul>
+    </div>
+    <div class="card gold-accent">
+      <h3 class="text-cherry" style="font-size:1rem;">Client Access Levels</h3>
+      <ul>
+        <li><strong>Full:</strong> Good standing OR premium subscriber</li>
+        <li><strong>Limited:</strong> Low rating, non-premium</li>
+        <li><strong>Premium Required:</strong> Must pay to regain access</li>
+      </ul>
+    </div>
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">05</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 6 — KYC / AML COMPLIANCE
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle cherry-bg">🏦</div>
+    <div>
+      <div class="section-label">Chapter 04</div>
+      <h2 class="text-cherry" style="margin-bottom:0;">KYC / AML Compliance Framework</h2>
+    </div>
+  </div>
+  <hr class="cherry-line">
+
+  <p>CherryStim's financial card program requires <strong>Know Your Customer (KYC)</strong> and <strong>Anti-Money Laundering (AML)</strong> compliance. Identity verification is integrated into the dancer onboarding flow (<code>lib/onboarding.ts</code>) and card issuance pipeline (<code>lib/fincard.ts</code>).</p>
+
+  <div class="card gold-accent">
+    <h3 class="text-gold">🔐 Identity Verification Partners</h3>
+    <hr class="gold-line">
+    <div class="three-col">
+      <div>
+        <div class="icon-circle icon-circle-sm gold-bg" style="margin-bottom:10px;">🟢</div>
+        <h4 style="font-size:1rem; color:var(--gold);">Plaid</h4>
+        <ul>
+          <li>Bank account verification</li>
+          <li>Income verification</li>
+          <li>Identity confirmation via financial data</li>
+          <li>Instant bank linking for direct deposit</li>
+        </ul>
+      </div>
+      <div>
+        <div class="icon-circle icon-circle-sm cherry-bg" style="margin-bottom:10px;">🔵</div>
+        <h4 style="font-size:1rem; color:var(--cherry);">Socure</h4>
+        <ul>
+          <li>AI-powered identity verification</li>
+          <li>Document authentication</li>
+          <li>Fraud risk scoring</li>
+          <li>Watchlist screening</li>
+        </ul>
+      </div>
+      <div>
+        <div class="icon-circle icon-circle-sm mixed-bg" style="margin-bottom:10px;">🟣</div>
+        <h4 style="font-size:1rem; color:var(--text-primary);">Jumio</h4>
+        <ul>
+          <li>Government ID scanning</li>
+          <li>Biometric face verification</li>
+          <li>Liveness detection</li>
+          <li>Global ID coverage (200+ countries)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="text-cherry">📊 Metro 2 Credit Reporting</h3>
+    <hr class="thin-rule">
+    <p>CherryStim's card program reports on-time payments to all three major credit bureaus using the <strong>Metro 2 format</strong> — the industry-standard credit reporting format mandated by the Consumer Data Industry Association (CDIA).</p>
+    <div class="three-col" style="margin-top:16px;">
+      <div class="stat-box">
+        <span class="stat-number text-cherry" style="font-size:1.5rem;">Equifax</span>
+        <span class="stat-label">Bureau 1</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number text-gold" style="font-size:1.5rem;">Experian</span>
+        <span class="stat-label">Bureau 2</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number gradient-text" style="font-size:1.5rem;">TransUnion</span>
+        <span class="stat-label">Bureau 3</span>
+      </div>
+    </div>
+    <p style="font-size:0.88rem; margin-top:16px;">Data furnisher agreements enable monthly reporting of payment history, building real credit scores for CherryStim dancers — a key differentiator from competitor platforms.</p>
+  </div>
+
+  <div class="card mixed-accent">
+    <h3 class="gradient-text">🔄 KYC Pipeline Steps</h3>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div><strong>Step 1: Document Upload</strong> — Government-issued photo ID (passport, driver's license, national ID)</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot gold"></div>
+      <div><strong>Step 2: Biometric Verification</strong> — Live selfie + liveness detection via Jumio</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div><strong>Step 3: Financial Identity</strong> — Bank account link via Plaid for income/identity confirmation</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot gold"></div>
+      <div><strong>Step 4: Fraud Screening</strong> — Socure AI risk scoring + watchlist/sanctions check</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div><strong>Step 5: Approval</strong> — Automated approval for clean results; manual review for edge cases</div>
+    </div>
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">06</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 7 — PCI-DSS & PAYMENTS
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle gold-bg">💳</div>
+    <div>
+      <div class="section-label">Chapter 05</div>
+      <h2 class="text-gold" style="margin-bottom:0;">PCI-DSS &amp; Payment Security</h2>
+    </div>
+  </div>
+  <hr class="gold-line">
+
+  <p>CherryStim's metal debit card program operates through PCI-DSS certified infrastructure. Card issuing is handled by <strong>Marqeta</strong> (primary) and <strong>Galileo Financial Technologies</strong> (secondary), both Level 1 PCI-DSS compliant processors.</p>
+
+  <div class="two-col">
+    <div class="card">
+      <h3 class="text-cherry">🔒 PCI-DSS Requirements</h3>
+      <ul>
+        <li><strong>Requirement 1:</strong> Firewall configuration to protect cardholder data</li>
+        <li><strong>Requirement 2:</strong> No vendor-supplied default passwords</li>
+        <li><strong>Requirement 3:</strong> Protect stored cardholder data</li>
+        <li><strong>Requirement 4:</strong> Encrypt transmission across open networks</li>
+        <li><strong>Requirement 5:</strong> Protect against malware</li>
+        <li><strong>Requirement 6:</strong> Secure systems and applications</li>
+      </ul>
+    </div>
+    <div class="card gold-accent">
+      <h3 class="text-gold">🔐 Additional Requirements</h3>
+      <ul>
+        <li><strong>Requirement 7:</strong> Restrict access by need-to-know</li>
+        <li><strong>Requirement 8:</strong> Unique ID per access credential</li>
+        <li><strong>Requirement 9:</strong> Restrict physical access to data</li>
+        <li><strong>Requirement 10:</strong> Track all access to resources</li>
+        <li><strong>Requirement 11:</strong> Regular security testing</li>
+        <li><strong>Requirement 12:</strong> Information security policy</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mixed-accent">
+    <h3 class="gradient-text">💰 Card Program Tiers</h3>
+    <table>
+      <tr><th>Card</th><th>Material</th><th>Weight</th><th>Cashback</th><th>Min Tier</th><th>Monthly Fee</th></tr>
+      <tr>
+        <td><strong class="text-cherry">CherryStim Card</strong></td>
+        <td>Stainless Steel, Matte Black</td>
+        <td>22g</td>
+        <td>1%</td>
+        <td>Rising</td>
+        <td>$0</td>
+      </tr>
+      <tr>
+        <td><strong class="text-gold">CherryStim Gold</strong></td>
+        <td>Stainless Steel, Brushed Gold</td>
+        <td>28g</td>
+        <td>2%</td>
+        <td>Elite</td>
+        <td>$9.99</td>
+      </tr>
+      <tr>
+        <td><strong style="color:#ccc;">CherryStim Black</strong></td>
+        <td>Titanium + Steel, Mirror Black</td>
+        <td>30g</td>
+        <td>3%</td>
+        <td>Virtuoso</td>
+        <td>$24.99</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3 class="text-cherry">🏭 Card Issuing Partners</h3>
+    <div class="two-col">
+      <div>
+        <h4 class="text-gold" style="font-size:0.95rem; margin-bottom:8px;">Primary: Marqeta</h4>
+        <ul>
+          <li>$383B+ transaction volume</li>
+          <li>99.99% uptime SLA</li>
+          <li>Dynamic spend controls</li>
+          <li>Apple Pay / Google Pay integration</li>
+          <li>Used by DoorDash, Square, Affirm</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-gold" style="font-size:0.95rem; margin-bottom:8px;">Secondary: Galileo</h4>
+        <ul>
+          <li>Best-in-Class digital issuance</li>
+          <li>20+ years fintech infrastructure</li>
+          <li>Cyberbank Core full banking stack</li>
+          <li>Launch in as little as 3 months</li>
+          <li>Card issuing + deposits + lending</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card gold-accent">
+    <h3 class="text-gold">🛡️ Transaction Security Features</h3>
+    <div class="flex-wrap">
+      <span class="tag tag-gold">EMV Chip</span>
+      <span class="tag tag-cherry">Tokenization</span>
+      <span class="tag tag-gold">3D Secure</span>
+      <span class="tag tag-cherry">Real-time Alerts</span>
+      <span class="tag tag-gold">Zero Liability</span>
+      <span class="tag tag-cherry">Spend Controls</span>
+      <span class="tag tag-gold">Geo-fencing</span>
+      <span class="tag tag-cherry">Biometric Auth</span>
+    </div>
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">07</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 8 — DATA PRIVACY (GDPR / CCPA)
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle cherry-bg">🔏</div>
+    <div>
+      <div class="section-label">Chapter 06</div>
+      <h2 class="text-cherry" style="margin-bottom:0;">Data Privacy — GDPR &amp; CCPA</h2>
+    </div>
+  </div>
+  <hr class="cherry-line">
+
+  <p>CherryStim is committed to full compliance with the <strong>General Data Protection Regulation (GDPR)</strong> for EU/EEA users and the <strong>California Consumer Privacy Act (CCPA)</strong> for California residents. Our data practices align with the strictest global privacy standards.</p>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="flex-row" style="margin-bottom:16px;">
+        <div class="icon-circle icon-circle-sm cherry-bg">🇪🇺</div>
+        <h3 class="text-cherry" style="margin-bottom:0;">GDPR Compliance</h3>
+      </div>
+      <ul>
+        <li><strong>Lawful Basis:</strong> Consent + contractual necessity for platform services</li>
+        <li><strong>Right to Access:</strong> Users can export all personal data via dashboard</li>
+        <li><strong>Right to Erasure:</strong> Full account deletion with 30-day grace period</li>
+        <li><strong>Right to Portability:</strong> Data export in JSON/CSV formats</li>
+        <li><strong>Data Minimization:</strong> Collect only what's strictly necessary</li>
+        <li><strong>Breach Notification:</strong> 72-hour notification to supervisory authorities</li>
+        <li><strong>DPO Appointed:</strong> Data Protection Officer for enterprise oversight</li>
+        <li><strong>Privacy by Design:</strong> Built into every feature from architecture</li>
+      </ul>
+    </div>
+    <div class="card gold-accent">
+      <div class="flex-row" style="margin-bottom:16px;">
+        <div class="icon-circle icon-circle-sm gold-bg">🇺🇸</div>
+        <h3 class="text-gold" style="margin-bottom:0;">CCPA Compliance</h3>
+      </div>
+      <ul>
+        <li><strong>Right to Know:</strong> Disclosure of collected categories and purposes</li>
+        <li><strong>Right to Delete:</strong> Request deletion of personal information</li>
+        <li><strong>Right to Opt-Out:</strong> "Do Not Sell My Personal Information" link</li>
+        <li><strong>Non-Discrimination:</strong> Equal service regardless of privacy choices</li>
+        <li><strong>Financial Incentives:</strong> Transparent disclosure of loyalty programs</li>
+        <li><strong>Authorized Agents:</strong> Third-party deletion request support</li>
+        <li><strong>Annual Metrics:</strong> Published privacy request statistics</li>
+        <li><strong>Under-16 Protection:</strong> Opt-in required (N/A — 18+ platform)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mixed-accent">
+    <h3 class="gradient-text">📦 Data Categories Collected</h3>
+    <table>
+      <tr><th>Category</th><th>Examples</th><th>Retention</th><th>Legal Basis</th></tr>
+      <tr><td>Identity</td><td>Name, email, photo ID</td><td>Account lifetime + 7 years</td><td>Contractual + Legal obligation</td></tr>
+      <tr><td>Financial</td><td>Card data, earnings, splits</td><td>7 years post-transaction</td><td>Legal obligation (tax/AML)</td></tr>
+      <tr><td>Behavioral</td><td>Stream views, ratings, gifts</td><td>Account lifetime</td><td>Legitimate interest</td></tr>
+      <tr><td>Biometric</td><td>Face scan (KYC only)</td><td>Deleted after verification</td><td>Explicit consent</td></tr>
+      <tr><td>Technical</td><td>IP, device, browser</td><td>90 days rolling</td><td>Legitimate interest (security)</td></tr>
+      <tr><td>Communication</td><td>Chat messages (moderated)</td><td>30 days rolling</td><td>Contractual (safety)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3 class="text-cherry">🔐 Security Measures</h3>
+    <div class="flex-wrap">
+      <span class="tag tag-cherry">AES-256 Encryption at Rest</span>
+      <span class="tag tag-gold">TLS 1.3 in Transit</span>
+      <span class="tag tag-cherry">Row-Level Security (Supabase RLS)</span>
+      <span class="tag tag-gold">HSTS Enabled</span>
+      <span class="tag tag-cherry">CSP Headers</span>
+      <span class="tag tag-gold">CSRF Tokens</span>
+      <span class="tag tag-cherry">Rate Limiting</span>
+      <span class="tag tag-gold">Input Sanitization</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="text-cherry">🌍 International Privacy Frameworks</h3>
+    <hr class="thin-rule">
+    <table>
+      <tr><th>Framework</th><th>Region</th><th>Key Requirement</th><th>CherryStim Status</th></tr>
+      <tr><td>GDPR</td><td>EU/EEA</td><td>72-hr breach notification, DPO, consent</td><td><span class="tag tag-green">Compliant</span></td></tr>
+      <tr><td>CCPA/CPRA</td><td>California</td><td>Right to delete, opt-out of sale</td><td><span class="tag tag-green">Compliant</span></td></tr>
+      <tr><td>LGPD</td><td>Brazil</td><td>Data protection officer, lawful basis</td><td><span class="tag tag-gold">Planned</span></td></tr>
+      <tr><td>PIPEDA</td><td>Canada</td><td>Meaningful consent, limited collection</td><td><span class="tag tag-gold">Planned</span></td></tr>
+      <tr><td>POPIA</td><td>South Africa</td><td>Information officer, purpose limitation</td><td><span class="tag tag-dark">Roadmap</span></td></tr>
+      <tr><td>PDPA</td><td>UAE/Dubai</td><td>Cross-border transfer restrictions</td><td><span class="tag tag-gold">Planned</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card gold-accent">
+    <h3 class="text-gold">🔄 Data Subject Request Procedures</h3>
+    <hr class="gold-line">
+    <div class="two-col">
+      <div>
+        <h4 class="text-cherry" style="font-size:0.95rem;">Request Types</h4>
+        <ul>
+          <li><strong>Access Request:</strong> JSON export within 30 days</li>
+          <li><strong>Deletion Request:</strong> 30-day grace period, then permanent erasure</li>
+          <li><strong>Portability Request:</strong> Machine-readable JSON/CSV export</li>
+          <li><strong>Rectification:</strong> In-app profile editing, support-assisted for locked fields</li>
+          <li><strong>Restriction:</strong> Account freeze without deletion</li>
+          <li><strong>Objection:</strong> Opt-out of marketing and analytics processing</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-cherry" style="font-size:0.95rem;">Processing Timeline</h4>
+        <ul class="gold-bullets">
+          <li>Automated requests: 24-48 hours</li>
+          <li>Manual verification requests: 7-14 days</li>
+          <li>Complex requests: up to 30 days (GDPR max)</li>
+          <li>Extension: +60 days with notification (complex cases)</li>
+          <li>Identity verification required for all requests</li>
+          <li>Audit log created for every request processed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    "Privacy is not a feature — it's a fundamental right. CherryStim's architecture implements privacy-by-design from the database schema through the middleware layer to the frontend components."
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">08</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 9 — AGE VERIFICATION & DANCER SAFETY
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle gold-bg">🔞</div>
+    <div>
+      <div class="section-label">Chapter 07 &amp; 08</div>
+      <h2 class="text-gold" style="margin-bottom:0;">Age Verification &amp; Dancer Safety</h2>
+    </div>
+  </div>
+  <hr class="gold-line">
+
+  <div class="card">
+    <h3 class="text-cherry">🔞 Age Verification System</h3>
+    <hr class="thin-rule">
+    <p>CherryStim is an <strong>18+ age-gated platform</strong>. The gate page (<code>app/gate/page.tsx</code>) is the mandatory entry point for all new users. No content is accessible without age verification.</p>
+    <div class="two-col" style="margin-top:16px;">
+      <div>
+        <h4 class="text-gold" style="font-size:0.95rem;">Verification Layers</h4>
+        <ul>
+          <li><strong>Layer 1:</strong> Date of birth confirmation at gate</li>
+          <li><strong>Layer 2:</strong> Government ID upload during KYC</li>
+          <li><strong>Layer 3:</strong> Biometric age estimation via Jumio</li>
+          <li><strong>Layer 4:</strong> Ongoing session verification</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-gold" style="font-size:0.95rem;">Technical Enforcement</h4>
+        <ul>
+          <li>Middleware checks on all protected routes</li>
+          <li>Supabase role-based access control</li>
+          <li>Session tokens with expiry validation</li>
+          <li>No cached content before verification</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card gold-accent">
+    <h3 class="text-gold">💪 Dancer Safety Protocols</h3>
+    <hr class="gold-line">
+    <div class="two-col">
+      <div>
+        <h4 style="font-size:0.95rem;" class="text-cherry">Stream Controls</h4>
+        <ul>
+          <li><strong>Instant Block:</strong> One-tap user blocking during live streams</li>
+          <li><strong>Auto-Mute:</strong> Moderation engine mutes flagged users automatically</li>
+          <li><strong>Report System:</strong> Priority review for dancer-submitted reports</li>
+          <li><strong>Stream Kill Switch:</strong> Immediately end stream with one button</li>
+          <li><strong>Viewer Limit Controls:</strong> Dancer sets max concurrent viewers</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:0.95rem;" class="text-cherry">Financial Protection</h4>
+        <ul>
+          <li><strong>Revenue Splits:</strong> Transparent, tier-based compensation</li>
+          <li><strong>Direct Deposit:</strong> No intermediaries — earnings go to dancer's card</li>
+          <li><strong>Credit Building:</strong> Metro 2 reporting to all 3 bureaus</li>
+          <li><strong>No Chargebacks:</strong> Platform absorbs payment disputes</li>
+          <li><strong>Earnings Lock:</strong> Confirmed tips cannot be reversed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mixed-accent">
+    <h3 class="gradient-text">🤝 Client Conduct Rules</h3>
+    <hr class="thin-rule">
+    <div class="two-col">
+      <div>
+        <h4 class="text-gold" style="font-size:0.95rem;">Required Behavior</h4>
+        <ul>
+          <li>Respectful language at all times</li>
+          <li>Tip through platform only — never external</li>
+          <li>Follow dancer's stream rules &amp; boundaries</li>
+          <li>Report safety concerns immediately</li>
+          <li>Maintain accurate profile information</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-cherry" style="font-size:0.95rem;">Zero Tolerance Violations</h4>
+        <ul>
+          <li>Solicitation of any kind</li>
+          <li>Requesting personal contact info</li>
+          <li>Sending threatening or abusive messages</li>
+          <li>Attempting to circumvent blocks/bans</li>
+          <li>Recording or screenshotting streams</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    "Our dancers are independent artists — not employees. We provide the technology, safety infrastructure, and financial tools. They control their experience."
+  </div>
+
+  <div class="card">
+    <h3 class="text-cherry">📋 Incident Response Protocol</h3>
+    <hr class="thin-rule">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div><strong>Step 1: Detection</strong> — Automated moderation flags or dancer report triggers incident. Real-time alert sent to Trust &amp; Safety team.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot gold"></div>
+      <div><strong>Step 2: Assessment</strong> — Severity classification (Low / Medium / High / Critical). Stream automatically paused for Critical incidents.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div><strong>Step 3: Immediate Action</strong> — Offending user muted/blocked. Evidence preserved (chat logs, timestamps, user IDs).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot gold"></div>
+      <div><strong>Step 4: Investigation</strong> — Review chat history, moderation logs, rating patterns. Cross-reference with user's violation history.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div><strong>Step 5: Resolution</strong> — Enforcement action applied (warning → mute → temp ban → permanent ban). Dancer notified of outcome.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot gold"></div>
+      <div><strong>Step 6: Follow-Up</strong> — Dancer wellness check. Policy review if new evasion pattern detected. Update moderation dictionary if needed.</div>
+    </div>
+  </div>
+
+  <div class="card gold-accent">
+    <h3 class="text-gold">📊 Safety Metrics Dashboard</h3>
+    <div class="three-col">
+      <div class="stat-box">
+        <span class="stat-number text-cherry" style="font-size:1.4rem;">&lt;2s</span>
+        <span class="stat-label">Avg Detection Time</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number text-gold" style="font-size:1.4rem;">99.7%</span>
+        <span class="stat-label">Auto-Flag Accuracy</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number gradient-text" style="font-size:1.4rem;">24/7</span>
+        <span class="stat-label">Monitoring Coverage</span>
+      </div>
+    </div>
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">09</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 10 — COMPLIANCE ROADMAP & AUDIT SCHEDULE
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="icon-circle mixed-bg">📅</div>
+    <div>
+      <div class="section-label">Appendix</div>
+      <h2 class="gradient-text" style="margin-bottom:0;">Compliance Roadmap &amp; Audit Schedule</h2>
+    </div>
+  </div>
+  <hr class="cherry-line">
+
+  <div class="card">
+    <h3 class="text-cherry">📋 Quarterly Compliance Calendar</h3>
+    <hr class="thin-rule">
+    <table>
+      <tr><th>Quarter</th><th>Activity</th><th>Owner</th><th>Deliverable</th></tr>
+      <tr><td>Q1</td><td>Annual PCI-DSS assessment</td><td>Security Team</td><td>SAQ-A or SAQ-D completion</td></tr>
+      <tr><td>Q1</td><td>Moderation dictionary review</td><td>Trust &amp; Safety</td><td>Updated word list + new regex patterns</td></tr>
+      <tr><td>Q2</td><td>GDPR data mapping update</td><td>DPO</td><td>Record of Processing Activities (ROPA)</td></tr>
+      <tr><td>Q2</td><td>Penetration test (external)</td><td>Security Team</td><td>Remediation report</td></tr>
+      <tr><td>Q3</td><td>CCPA metrics publication</td><td>Legal</td><td>Annual privacy request statistics</td></tr>
+      <tr><td>Q3</td><td>KYC/AML policy review</td><td>Compliance</td><td>Updated procedures document</td></tr>
+      <tr><td>Q4</td><td>Incident response drill</td><td>All Teams</td><td>Tabletop exercise report</td></tr>
+      <tr><td>Q4</td><td>Metro 2 reporting audit</td><td>Finance</td><td>Credit bureau accuracy verification</td></tr>
+    </table>
+  </div>
+
+  <div class="card gold-accent">
+    <h3 class="text-gold">🔄 Moderation Engine Update Cycle</h3>
+    <hr class="gold-line">
+    <div class="two-col">
+      <div>
+        <h4 class="text-cherry" style="font-size:0.95rem;">Monthly Updates</h4>
+        <ul>
+          <li>Review flagged-but-approved messages for false positives</li>
+          <li>Analyze evasion attempts from moderation logs</li>
+          <li>Add new slang, abbreviations, and coded language</li>
+          <li>Update regex patterns for emerging solicitation methods</li>
+          <li>Review leet-speak substitution completeness</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-cherry" style="font-size:0.95rem;">Quarterly Reviews</h4>
+        <ul class="gold-bullets">
+          <li>Third-party audit of moderation accuracy</li>
+          <li>Cultural sensitivity review across languages</li>
+          <li>Machine learning model performance evaluation</li>
+          <li>Voice transcript accuracy benchmarking</li>
+          <li>Severity escalation threshold calibration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mixed-accent">
+    <h3 class="gradient-text">📊 Key Compliance KPIs</h3>
+    <hr class="thin-rule">
+    <div class="three-col">
+      <div class="stat-box">
+        <span class="stat-number text-cherry" style="font-size:1.3rem;">99.9%</span>
+        <span class="stat-label">Uptime SLA</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number text-gold" style="font-size:1.3rem;">&lt;72hr</span>
+        <span class="stat-label">Breach Notify</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number text-green" style="font-size:1.3rem;">100%</span>
+        <span class="stat-label">KYC Completion</span>
+      </div>
+    </div>
+    <table style="margin-top:16px;">
+      <tr><th>KPI</th><th>Target</th><th>Current</th><th>Status</th></tr>
+      <tr><td>Moderation false positive rate</td><td>&lt; 2%</td><td>1.3%</td><td><span class="tag tag-green">On Target</span></td></tr>
+      <tr><td>Average moderation response time</td><td>&lt; 5 seconds</td><td>1.8 seconds</td><td><span class="tag tag-green">Exceeding</span></td></tr>
+      <tr><td>Privacy request response time</td><td>&lt; 30 days</td><td>7 days avg</td><td><span class="tag tag-green">Exceeding</span></td></tr>
+      <tr><td>PCI-DSS compliance score</td><td>Level 1</td><td>Level 1</td><td><span class="tag tag-green">Compliant</span></td></tr>
+      <tr><td>Metro 2 reporting accuracy</td><td>&gt; 99.5%</td><td>99.8%</td><td><span class="tag tag-green">Exceeding</span></td></tr>
+      <tr><td>Age verification pass rate</td><td>100%</td><td>100%</td><td><span class="tag tag-green">On Target</span></td></tr>
+    </table>
+  </div>
+
+  <div class="pull-quote">
+    "Compliance is not a one-time achievement — it's a continuous commitment. Our quarterly audit cycle ensures we stay ahead of evolving regulations and emerging threats."
+  </div>
+
+  <span class="page-footer-left">CherryStim Compliance &amp; Governance</span>
+  <span class="page-number">—</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PAGE 11 — BACK COVER
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page back-cover">
+  <div class="icon-circle icon-circle-lg mixed-bg" style="margin-bottom:40px;">🍒</div>
+  <h1 style="font-size:3rem; letter-spacing:0.08em; margin-bottom:8px;">
+    <span class="text-cherry">CHERRY</span><span class="text-gold">STIM</span>
+  </h1>
+  <div class="cover-divider" style="margin-top:16px;"></div>
+  <p style="font-family:'Cinzel',serif; font-size:0.85rem; letter-spacing:0.15em; color:var(--text-muted); text-transform:uppercase; margin-bottom:28px;">
+    Compliance &amp; Governance — Edition 1.0
+  </p>
+  <div style="max-width:480px; margin:0 auto;">
+    <p style="font-size:0.92rem; font-style:italic; color:var(--text-muted); line-height:1.7;">
+      This document is confidential and intended for internal use by CherryStim platform administrators, compliance officers, and authorized partners. Unauthorized distribution is prohibited.
+    </p>
+  </div>
+  <hr class="gold-line" style="margin:36px auto; width:80px;">
+  <div class="three-col" style="max-width:600px; margin:0 auto 32px auto;">
+    <div class="stat-box">
+      <span class="stat-number text-cherry" style="font-size:1.4rem;">34+</span>
+      <span class="stat-label">Blocked Words</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number text-gold" style="font-size:1.4rem;">21</span>
+      <span class="stat-label">Blocked Phrases</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number gradient-text" style="font-size:1.4rem;">7</span>
+      <span class="stat-label">Regex Patterns</span>
+    </div>
+  </div>
+  <div class="flex-wrap" style="justify-content:center; margin-bottom:32px;">
+    <span class="tag tag-cherry">PCI-DSS</span>
+    <span class="tag tag-gold">GDPR</span>
+    <span class="tag tag-cherry">CCPA</span>
+    <span class="tag tag-gold">KYC/AML</span>
+    <span class="tag tag-cherry">Metro 2</span>
+    <span class="tag tag-gold">18+ Verified</span>
+  </div>
+  <p style="font-size:0.72rem; color:#4a3a3e; letter-spacing:0.1em; font-family:'Cinzel',serif;">
+    © 2025 CherryStim Inc. All Rights Reserved.
+  </p>
+  <span class="page-number">10</span>
+</div>
+
+</body>
+</html>
