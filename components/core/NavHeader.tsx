@@ -78,6 +78,13 @@ export function NavHeader() {
               </button>
 
               <button
+                onClick={() => router.push("/jukebox")}
+                className={`hidden items-center gap-1.5 text-sm md:flex ${pathname === "/jukebox" ? "text-cherry-500" : "text-white/60 hover:text-white"}`}
+              >
+                🎵 Jukebox
+              </button>
+
+              <button
                 onClick={() => router.push("/shop")}
                 className={`hidden items-center gap-1.5 text-sm md:flex ${pathname === "/shop" ? "text-cherry-500" : "text-white/60 hover:text-white"}`}
               >
@@ -127,6 +134,12 @@ export function NavHeader() {
                     className={`hidden items-center gap-1.5 text-sm md:flex ${pathname === "/admin/compliance" ? "text-gold-500" : "text-white/60 hover:text-white"}`}
                   >
                     <Scale size={15} /> Compliance
+                  </button>
+                  <button
+                    onClick={() => router.push("/admin/music")}
+                    className={`hidden items-center gap-1.5 text-sm md:flex ${pathname === "/admin/music" ? "text-gold-500" : "text-white/60 hover:text-white"}`}
+                  >
+                    🎵 Music
                   </button>
                 </>
               )}
