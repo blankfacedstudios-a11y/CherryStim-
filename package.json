@@ -23,7 +23,7 @@
     "livekit-client": "^2.9.1",
     "livekit-server-sdk": "^2.9.1",
     "lucide-react": "^0.475.0",
-    "next": "15.2.4",
+    "next": "^15.5.15",
     "postcss": "^8.5.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -40,7 +40,7 @@
     "@types/react-dom": "^18.3.5",
     "@types/three": "^0.169.0",
     "eslint": "^9.22.0",
-    "eslint-config-next": "15.2.4",
+    "eslint-config-next": "^15.5.0",
     "tailwindcss-animate": "^1.0.7"
   }
 }
