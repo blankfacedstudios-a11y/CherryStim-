@@ -220,82 +220,114 @@ def build_styles():
     return styles
 
 
-def ranking_rows(styles):
-    s = styles["Small"]
+def ranking_records():
     return [
-        [
-            Paragraph("<b>Rank</b>", s),
-            Paragraph("<b>Document / Project</b>", s),
-            Paragraph("<b>Key Multi-Criteria Rationale</b>", s),
-            Paragraph("<b>Year-1 DIY Cost Est.</b>", s),
-            Paragraph("<b>Fastest Timeline</b>", s),
-            Paragraph("<b>Patent Value / Creativity Sensitivity</b>", s),
-        ],
-        [
-            "1",
-            Paragraph("CherryStim_IP_Protection_Guide.html", s),
-            Paragraph("Lowest cost and fastest timeline; four explicit patent opportunities; AR/live-stream workflow has elevated copy risk.", s),
-            "$5K-$9.5K",
-            "1-6 months",
-            "High (4 innovations) / Very High",
-        ],
-        [
-            "2",
-            Paragraph("SlateFlix_IP_Protection_Checklist.pdf", s),
-            Paragraph("Ready-to-file critical trademarks with high success likelihood and rapid lock-in for core cinematic brand assets.", s),
-            "$4K-$8K",
-            "2-8 months",
-            "Medium / High",
-        ],
-        [
-            "3",
-            Paragraph("Aficionado_IP_Protection_and_Valuation_Report_v4.pdf", s),
-            Paragraph("Strong trademark cost table and clear valuation range; word-mark-first path is executable and defensible.", s),
-            "$20K-$32K",
-            "8-14 months",
-            "Medium / High",
-        ],
-        [
-            "4",
-            Paragraph("Beararms_IP_Protection_Roadmap_2026.pdf", s),
-            Paragraph("Prebuilt USPTO + copyright roadmap and software/AI asset profile supports efficient US-first filings.", s),
-            "$8K-$15K",
-            "3-9 months",
-            "Medium (AI) / High",
-        ],
-        [
-            "5",
-            Paragraph("SovereignStewardship_IP_Protection_Strategy.pdf", s),
-            Paragraph("Higher budget but strong upside in credits/ROSCA/AI; copyrights and trademarks provide immediate legal leverage.", s),
-            "$28.5K-$52K (+patent)",
-            "4-12 months",
-            "High / High",
-        ],
-        [
-            "6",
-            Paragraph("Scoville_Trestle_IP_Protection_Dossier_v2.pdf", s),
-            Paragraph("Large asset universe and high novelty, but urgency is lower than the brand-critical first wave.", s),
-            "$15K-$35K",
-            "6-12 months",
-            "High / High",
-        ],
-        [
-            "7",
-            Paragraph("CloudSwift_IP_Protection_Dossier.pdf", s),
-            Paragraph("Tanzania filing advantage and pending fintech inventions; local-first maintenance is strategic before global spend.", s),
-            "$10K-$25K",
-            "4-10 months",
-            "High / Very High",
-        ],
-        [
-            "8",
-            Paragraph("Malkias_Collection_IP_Registry.pptx", s),
-            Paragraph("Highest complexity with 30+ jurisdictions and Madrid/PCT burden; defer until first-wave protections are stable.", s),
-            "$25K-$60K+",
-            "12-24+ months",
-            "Very High / Very High",
-        ],
+        {
+            "rank": "1",
+            "doc": "CherryStim_IP_Protection_Guide.html",
+            "rationale": "Lowest cost and fastest timeline; four explicit patent opportunities; AR/live-stream workflow has elevated copy risk.",
+            "cost": "$5K-$9.5K",
+            "timeline": "1-6 months",
+            "value": "High (4 innovations) / Very High",
+        },
+        {
+            "rank": "2",
+            "doc": "SlateFlix_IP_Protection_Checklist.pdf",
+            "rationale": "Ready-to-file critical trademarks with high success likelihood and rapid lock-in for core cinematic brand assets.",
+            "cost": "$4K-$8K",
+            "timeline": "2-8 months",
+            "value": "Medium / High",
+        },
+        {
+            "rank": "3",
+            "doc": "Aficionado_IP_Protection_and_Valuation_Report_v4.pdf",
+            "rationale": "Strong trademark cost table and clear valuation range; word-mark-first path is executable and defensible.",
+            "cost": "$20K-$32K",
+            "timeline": "8-14 months",
+            "value": "Medium / High",
+        },
+        {
+            "rank": "4",
+            "doc": "Beararms_IP_Protection_Roadmap_2026.pdf",
+            "rationale": "Prebuilt USPTO + copyright roadmap and software/AI asset profile supports efficient US-first filings.",
+            "cost": "$8K-$15K",
+            "timeline": "3-9 months",
+            "value": "Medium (AI) / High",
+        },
+        {
+            "rank": "5",
+            "doc": "SovereignStewardship_IP_Protection_Strategy.pdf",
+            "rationale": "Higher budget but strong upside in credits/ROSCA/AI; copyrights and trademarks provide immediate legal leverage.",
+            "cost": "$28.5K-$52K (+patent)",
+            "timeline": "4-12 months",
+            "value": "High / High",
+        },
+        {
+            "rank": "6",
+            "doc": "Scoville_Trestle_IP_Protection_Dossier_v2.pdf",
+            "rationale": "Large asset universe and high novelty, but urgency is lower than the brand-critical first wave.",
+            "cost": "$15K-$35K",
+            "timeline": "6-12 months",
+            "value": "High / High",
+        },
+        {
+            "rank": "7",
+            "doc": "CloudSwift_IP_Protection_Dossier.pdf",
+            "rationale": "Tanzania filing advantage and pending fintech inventions; local-first maintenance is strategic before global spend.",
+            "cost": "$10K-$25K",
+            "timeline": "4-10 months",
+            "value": "High / Very High",
+        },
+        {
+            "rank": "8",
+            "doc": "Malkias_Collection_IP_Registry.pptx",
+            "rationale": "Highest complexity with 30+ jurisdictions and Madrid/PCT burden; defer until first-wave protections are stable.",
+            "cost": "$25K-$60K+",
+            "timeline": "12-24+ months",
+            "value": "Very High / Very High",
+        },
     ]
+
+
+def ranking_tables(styles):
+    s = styles["Small"]
+    b = ParagraphStyle(
+        "TableBodySmall",
+        parent=s,
+        fontSize=8.3,
+        leading=10.4,
+        wordWrap="CJK",
+    )
+    h = ParagraphStyle(
+        "TableHeaderSmall",
+        parent=s,
+        fontName="Helvetica-Bold",
+        fontSize=8.0,
+        leading=9.8,
+        textColor=colors.white,
+        wordWrap="CJK",
+    )
+
+    def p(text: str):
+        return Paragraph(text, b)
+
+    def ph(text: str):
+        return Paragraph(text, h)
+
+    records = ranking_records()
+
+    summary = [
+        [ph("Rank"), ph("Document / Project"), ph("Key Multi-Criteria Rationale")]
+    ]
+    finance = [
+        [ph("Rank"), ph("Year-1 DIY Cost Est."), ph("Fastest Timeline"), ph("Patent Value / Creativity Sensitivity")]
+    ]
+
+    for row in records:
+        summary.append([p(row["rank"]), p(row["doc"]), p(row["rationale"])])
+        finance.append([p(row["rank"]), p(row["cost"]), p(row["timeline"]), p(row["value"])])
+
+    return summary, finance
 
 
 def add_bullets(story, style, items):
@@ -406,33 +438,60 @@ def build_story(styles):
     )
 
     story.append(Paragraph("Ranked Order (1 = Tackle First, Right Now)", styles["Section"]))
-    rank_data = ranking_rows(styles)
-    rank_table = Table(
-        rank_data,
-        colWidths=[0.40 * inch, 1.48 * inch, 2.38 * inch, 0.88 * inch, 0.82 * inch, 1.06 * inch],
+    rank_summary_data, rank_finance_data = ranking_tables(styles)
+
+    rank_summary_table = Table(
+        rank_summary_data,
+        colWidths=[0.50 * inch, 1.78 * inch, 4.12 * inch],
         repeatRows=1,
         hAlign="LEFT",
     )
-    rank_table.setStyle(
+    rank_summary_table.setStyle(
         TableStyle(
             [
                 ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#7a001e")),
                 ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-                ("FONTSIZE", (0, 0), (-1, 0), 8.5),
                 ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#bcc1cc")),
                 ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                ("LEFTPADDING", (0, 0), (-1, -1), 5),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 5),
+                ("LEFTPADDING", (0, 0), (-1, -1), 4),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 4),
                 ("TOPPADDING", (0, 0), (-1, -1), 4),
                 ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
                 ("BACKGROUND", (0, 1), (-1, -1), colors.HexColor("#f9fafc")),
                 ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.HexColor("#ffffff"), colors.HexColor("#f1f4f9")]),
                 ("ALIGN", (0, 0), (0, -1), "CENTER"),
+                ("WORDWRAP", (0, 0), (-1, -1), "CJK"),
             ]
         )
     )
-    story.append(rank_table)
+    story.append(rank_summary_table)
+    story.append(Spacer(1, 0.10 * inch))
+
+    rank_finance_table = Table(
+        rank_finance_data,
+        colWidths=[0.50 * inch, 1.70 * inch, 1.58 * inch, 2.62 * inch],
+        repeatRows=1,
+        hAlign="LEFT",
+    )
+    rank_finance_table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#7a001e")),
+                ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#bcc1cc")),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 4),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+                ("TOPPADDING", (0, 0), (-1, -1), 4),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+                ("BACKGROUND", (0, 1), (-1, -1), colors.HexColor("#f9fafc")),
+                ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.HexColor("#ffffff"), colors.HexColor("#f1f4f9")]),
+                ("ALIGN", (0, 0), (0, -1), "CENTER"),
+                ("WORDWRAP", (0, 0), (-1, -1), "CJK"),
+            ]
+        )
+    )
+    story.append(rank_finance_table)
     story.append(Spacer(1, 0.15 * inch))
     story.append(
         Paragraph(
