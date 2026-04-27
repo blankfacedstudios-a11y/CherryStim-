@@ -86,6 +86,16 @@
             margin-top: 20px;
         }
 
+        .hero-credits {
+            max-width: 900px;
+            margin: 24px auto 0;
+            padding: 18px;
+            border-top: 2px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+            font-size: clamp(1rem, 2.4vw, 1.25rem);
+            font-weight: 700;
+        }
+
         .credits {
             margin: 22px auto 0;
             max-width: 920px;
@@ -234,6 +244,14 @@
             text-align: center;
         }
 
+        .pdf-note {
+            max-width: 900px;
+            margin: 24px auto 0;
+            color: #fff;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
         .footer {
             background: #000;
             padding: 30px;
@@ -283,6 +301,24 @@
                 margin-bottom: 14px;
             }
         }
+
+        @media print {
+            body {
+                background: #000;
+            }
+
+            .magazine {
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .section,
+            header,
+            footer {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -293,7 +329,11 @@
             <h1 class="title">BELLE 9</h1>
             <h2 class="hero">KING OF R&amp;B<br>(Rhythm &amp; Bongo)</h2>
             <p class="subtitle">His 1st English Album</p>
-            <p class="track-list"><strong>Anticipation | Get Busy | Magnetic | Disconnect | Birthday Song</strong></p>
+            <p class="track-list"><strong>Featured Songs:</strong> Anticipation | Get Busy | Magnetic | Disconnect | Birthday Song</p>
+            <div class="hero-credits">
+                Written by Tim 'GCGQ' Jackson II | Executive Produced by AZNAS &amp; GCGQ<br>
+                A Product of SOO Official Publishing (Rhythm &amp; Bongo) | April 2026
+            </div>
         </header>
 
         <main>
@@ -404,9 +444,11 @@
             </section>
 
             <section class="section">
-                <h2>Official Flyers (Marvel x Fortune 500 Style)</h2>
+                <h2>The Official Project Flyers</h2>
                 <p class="flyer-note">
-                    Five high-resolution flyer slots for the edited cover artworks with bold text at 14.5pt or larger and no overlaps.
+                    Professional Canva Fortune 500 layouts with Marvel Comic Book aesthetic: bold dynamic energy,
+                    speech-bubble song highlights, cosmic throne visuals, large 14.5pt+ bold fonts, zero overlaps,
+                    and clean high-contrast design.
                 </p>
                 <div class="flyer-grid">
                     <article class="flyer" aria-label="Belle 9 city throne flyer">
@@ -440,6 +482,9 @@
                         </div>
                     </article>
                 </div>
+                <p class="pdf-note">
+                    Add the five uploaded high-resolution flyer images to these slots for final print production.
+                </p>
             </section>
         </main>
 
@@ -447,7 +492,9 @@
             <p class="prepared">Written by Tim 'GCGQ' Jackson II | Executive Produced by AZNAS &amp; GCGQ</p>
             <p><strong>A Product of SOO Official Publishing (Rhythm &amp; Bongo)</strong></p>
             <p class="website"><strong>www.sooofficialmycelial.com</strong></p>
-            <p class="roi">Projected ROI: Break-even 6-9 months | 7-10x Revenue Growth</p>
+            <p class="roi">Projected ROI &amp; 7-10x Growth Path: Break-even in 6-9 months with Tier A execution.</p>
+            <p>Belle 9 becomes the next African R&amp;B export king through English global streams, East Africa dominance, and international crossover.</p>
+            <p><strong>Prepared &amp; Approved by SOO Records Team</strong></p>
         </footer>
     </div>
 </body>
